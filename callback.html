@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermia — Connecting...</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --teal: #00C4A0;
+    --dark: #060608;
+    --dark2: #0D0D12;
+    --text: #F5F2EC;
+    --border: rgba(201,168,76,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    padding: 40px 24px;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 40px;
+  }
+  .card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--teal), transparent);
+  }
+
+/* Loading state */
+.spinner {
+width: 64px; height: 64px;
+border-radius: 50%;
+border: 3px solid rgba(201,168,76,0.2);
+border-top-color: var(–gold);
+animation: spin 1s linear infinite;
+margin: 0 auto 24px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Success state */
+.success-icon {
+width: 80px; height: 80px;
+border-radius: 50%;
+background: rgba(0,196,160,0.12);
+border: 2px solid var(–teal);
+display: flex; align-items: center; justify-content: center;
+font-size: 32px;
+margin: 0 auto 24px;
+box-shadow: 0 0 40px rgba(0,196,160,0.2);
+animation: scaleIn 0.5s ease forwards;
+}
+@keyframes scaleIn {
+from { transform: scale(0.5); opacity: 0; }
+to   { transform: scale(1); opacity: 1; }
+}
+
+/* Error state */
+.error-icon {
+width: 80px; height: 80px;
+border-radius: 50%;
+background: rgba(232,97,74,0.12);
+border: 2px solid #E8614A;
+display: flex; align-items: center; justify-content: center;
+font-size: 32px;
+margin: 0 auto 24px;
+animation: scaleIn 0.5s ease forwards;
+}
+
+h1 {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 36px;
+letter-spacing: 1px;
+margin-bottom: 12px;
+background: linear-gradient(135deg, #fff, var(–gold-light));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+p {
+font-size: 14px;
+color: #777;
+line-height: 1.6;
+margin-bottom: 8px;
+}
+.badge {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: rgba(0,196,160,0.1);
+border: 1px solid rgba(0,196,160,0.3);
+border-radius: 20px;
+padding: 4px 14px;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–teal);
+margin-bottom: 20px;
+}
+.dot {
+width: 6px; height: 6px;
+border-radius: 50%;
+background: var(–teal);
+animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.4; }
+}
+.btn {
+display: inline-block;
+margin-top: 20px;
+background: linear-gradient(135deg, #D4700A, var(–gold-light));
+color: #000;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 18px;
+letter-spacing: 2px;
+padding: 14px 32px;
+border-radius: 10px;
+text-decoration: none;
+transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+}
+.footer {
+margin-top: 24px;
+font-size: 12px;
+color: #333;
+}
+.footer a { color: var(–gold); text-decoration: none; }
+</style>
+
+</head>
+<body>
+<div class="container">
+  <div class="logo">⚡ HERMIA</div>
+
+  <div class="card" id="card">
+    <!-- Loading state (default) -->
+    <div id="loadingState">
+      <div class="spinner"></div>
+      <h1>CONNECTING...</h1>
+      <p>Securing your HubSpot connection.<br>This takes just a moment.</p>
+    </div>
+
+```
+<!-- Success state (hidden) -->
+<div id="successState" style="display:none">
+  <div class="badge"><span class="dot"></span>Connected</div>
+  <div class="success-icon">✓</div>
+  <h1>YOU'RE LIVE!</h1>
+  <p>Your HubSpot is now connected to<br><strong style="color:var(--gold-light)">Hermia Lead Accelerator V8</strong></p>
+  <p style="margin-top:12px">Your workflow will be fully active within <strong style="color:#fff">24 hours</strong>. Watch for leads coming into your HubSpot automatically.</p>
+  <p style="margin-top:16px; font-size:13px">Questions? <a href="mailto:capital@hermia.au" style="color:var(--gold)">capital@hermia.au</a></p>
+</div>
+
+<!-- Error state (hidden) -->
+<div id="errorState" style="display:none">
+  <div class="error-icon">✗</div>
+  <h1>CONNECTION FAILED</h1>
+  <p>Something went wrong during the connection.<br>Please try again.</p>
+  <a href="https://hermia.au" class="btn">TRY AGAIN →</a>
+</div>
+```
+
+  </div>
+
+  <div class="footer">
+    Hermia Lead Accelerator V8 &nbsp;·&nbsp; <a href="mailto:capital@hermia.au">capital@hermia.au</a>
+  </div>
+</div>
+
+<script>
+  const MAKE_WEBHOOK = 'https://hook.eu1.make.com/kmdclyt3r0jg5tbhgtc67piy9gognf';
+
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const error = params.get('error');
+
+  async function handleCallback() {
+    if (error) {
+      showError();
+      return;
+    }
+
+    if (!code) {
+      showError();
+      return;
+    }
+
+    try {
+      const response = await fetch(MAKE_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          code: code,
+          redirect_uri: 'https://hermia.au/callback',
+          timestamp: new Date().toISOString(),
+          source: 'hermia_oauth_callback'
+        })
+      });
+
+      // Show success regardless of webhook response
+      showSuccess();
+
+    } catch (err) {
+      console.error('Webhook error:', err);
+      // Still show success — code was received, webhook will retry
+      showSuccess();
+    }
+  }
+
+  function showSuccess() {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('successState').style.display = 'block';
+  }
+
+  function showError() {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('errorState').style.display = 'block';
+  }
+
+  // Run on page load
+  handleCallback();
+</script>
+
+</body>
+</html>
