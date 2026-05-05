@@ -16,14 +16,13 @@
       body: JSON.stringify({ code: code })
     })
     .then(() => {
-      window.location.href = 'https://hermia.au?connected=true';
+      window.location.href = 'https://hermia.au/success.html';
     })
     .catch((err) => {
-      // Even if Make.com fails, show success to agent
-      window.location.href = 'https://hermia.au?connected=true';
+      window.location.href = 'https://hermia.au/success.html';
     });
   } else {
-    window.location.href = 'https://hermia.au?connected=true';
+    window.location.href = 'https://hermia.au/success.html';
   }
 </script>
 </body>
