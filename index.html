@@ -11,12 +11,24 @@
     --gold: #C9A84C;
     --gold-light: #E8C97A;
     --gold-dim: rgba(201,168,76,0.15);
-    --dark: #080808;
-    --dark2: #101010;
-    --dark3: #181818;
+    --gold-glow: rgba(201,168,76,0.4);
+    --amber: #D4700A;
+    --amber-light: #F08030;
+    --teal: #00C4A0;
+    --teal-dim: rgba(0,196,160,0.12);
+    --teal-glow: rgba(0,196,160,0.3);
+    --coral: #E8614A;
+    --coral-dim: rgba(232,97,74,0.12);
+    --blue: #4A8FE8;
+    --blue-dim: rgba(74,143,232,0.12);
+    --dark: #060608;
+    --dark2: #0D0D12;
+    --dark3: #14141C;
+    --dark4: #1A1A26;
     --text: #F5F2EC;
-    --muted: #777;
+    --muted: #888;
     --border: rgba(201,168,76,0.2);
+    --border-bright: rgba(201,168,76,0.4);
   }
 
 - { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,18 +42,20 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-overflow: hidden;
+overflow-x: hidden;
 position: relative;
 }
 
-/* Background grain + glow */
 body::before {
 content: ‘’;
 position: fixed;
 inset: 0;
 background:
-radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%),
-radial-gradient(ellipse 40% 40% at 80% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+radial-gradient(ellipse 70% 50% at 20% 10%, rgba(201,168,76,0.12) 0%, transparent 60%),
+radial-gradient(ellipse 50% 40% at 80% 20%, rgba(0,196,160,0.08) 0%, transparent 55%),
+radial-gradient(ellipse 60% 50% at 50% 90%, rgba(212,112,10,0.1) 0%, transparent 65%),
+radial-gradient(ellipse 40% 40% at 85% 75%, rgba(74,143,232,0.06) 0%, transparent 55%),
+radial-gradient(ellipse 35% 35% at 10% 80%, rgba(232,97,74,0.06) 0%, transparent 50%);
 pointer-events: none;
 z-index: 0;
 }
@@ -51,10 +65,16 @@ content: ‘’;
 position: fixed;
 inset: 0;
 background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.04’/%3E%3C/svg%3E”);
-opacity: 0.4;
+opacity: 0.5;
 pointer-events: none;
 z-index: 0;
 }
+
+.orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; animation: orbFloat 8s ease-in-out infinite; }
+.orb-1 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.15), transparent 70%); top: -80px; left: -60px; animation-delay: 0s; }
+.orb-2 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(0,196,160,0.12), transparent 70%); top: 30%; right: -80px; animation-delay: -3s; }
+.orb-3 { width: 200px; height: 200px; background: radial-gradient(circle, rgba(212,112,10,0.12), transparent 70%); bottom: -40px; left: 20%; animation-delay: -5s; }
+@keyframes orbFloat { 0%, 100% { transform: translateY(0px) scale(1); } 50% { transform: translateY(-20px) scale(1.05); } }
 
 .container {
 position: relative;
@@ -64,331 +84,165 @@ flex-direction: column;
 align-items: center;
 text-align: center;
 padding: 40px 24px;
-max-width: 520px;
+max-width: 540px;
 width: 100%;
 animation: fadeUp 0.8s ease forwards;
 }
 
 @keyframes fadeUp {
-from { opacity: 0; transform: translateY(24px); }
+from { opacity: 0; transform: translateY(28px); }
 to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Logo */
-.logo {
-display: flex;
-align-items: center;
-gap: 10px;
-margin-bottom: 48px;
-animation: fadeUp 0.6s ease forwards;
-}
-.logo-mark {
-width: 36px; height: 36px;
-border: 1.5px solid var(–gold);
-border-radius: 8px;
-display: flex; align-items: center; justify-content: center;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 18px;
-color: var(–gold);
-letter-spacing: 1px;
-background: var(–gold-dim);
-}
-.logo-text {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 22px;
-letter-spacing: 4px;
-color: var(–text);
-}
+.logo { display: flex; align-items: center; gap: 12px; margin-bottom: 44px; animation: fadeUp 0.6s ease forwards; }
+.logo-img-wrap { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(–gold-dim); border: 1.5px solid var(–border-bright); border-radius: 12px; padding: 6px; box-shadow: 0 0 20px rgba(201,168,76,0.2); }
+.logo-img-wrap svg { width: 32px; height: 32px; }
+.logo-text { font-family: ‘Bebas Neue’, sans-serif; font-size: 26px; letter-spacing: 5px; color: var(–text); }
 
-/* Card */
 .card {
-background: var(–dark2);
+background: linear-gradient(145deg, var(–dark2), var(–dark3));
 border: 1px solid var(–border);
-border-radius: 16px;
+border-radius: 20px;
 padding: 48px 40px;
 width: 100%;
 position: relative;
 overflow: hidden;
 animation: fadeUp 0.8s ease 0.1s both;
+box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 24px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
-.card::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0;
-height: 1px;
-background: linear-gradient(90deg, transparent, var(–gold), transparent);
-}
+.card::before { content: ‘’; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, var(–gold) 30%, var(–teal) 70%, transparent 100%); }
+.card::after { content: ‘’; position: absolute; bottom: 0; right: 0; width: 180px; height: 180px; background: radial-gradient(circle at bottom right, rgba(0,196,160,0.06), transparent 70%); pointer-events: none; }
 
-.step-badge {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-background: var(–gold-dim);
-border: 1px solid var(–border);
-border-radius: 20px;
-padding: 4px 14px;
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–gold);
-margin-bottom: 24px;
-}
+.step-badge { display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(135deg, rgba(0,196,160,0.1), rgba(201,168,76,0.08)); border: 1px solid rgba(0,196,160,0.3); border-radius: 20px; padding: 5px 16px; font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(–teal); margin-bottom: 22px; }
+.step-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(–teal); animation: pulse 2s ease infinite; box-shadow: 0 0 6px var(–teal); }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 6px var(–teal); } 50% { opacity: 0.6; transform: scale(0.8); box-shadow: 0 0 3px var(–teal); } }
 
-.step-badge .dot {
-width: 6px; height: 6px;
-border-radius: 50%;
-background: var(–gold);
-animation: pulse 2s ease infinite;
-}
+h1 { font-family: ‘Bebas Neue’, sans-serif; font-size: 44px; line-height: 1; letter-spacing: 1px; margin-bottom: 14px; background: linear-gradient(135deg, #fff 30%, var(–gold-light) 60%, var(–amber-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.subtitle { font-size: 14px; color: var(–muted); line-height: 1.65; font-weight: 300; margin-bottom: 32px; max-width: 380px; margin-left: auto; margin-right: auto; }
 
-@keyframes pulse {
-0%, 100% { opacity: 1; transform: scale(1); }
-50% { opacity: 0.5; transform: scale(0.8); }
-}
+.features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; text-align: left; }
+.feature { display: flex; align-items: center; gap: 13px; font-size: 13.5px; color: #bbb; padding: 10px 14px; border-radius: 10px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); transition: background 0.2s, border-color 0.2s; }
+.feature:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
+.feature-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+.fi-amber { background: rgba(240,128,48,0.15); border: 1px solid rgba(240,128,48,0.25); }
+.fi-teal  { background: rgba(0,196,160,0.12);  border: 1px solid rgba(0,196,160,0.25); }
+.fi-blue  { background: rgba(74,143,232,0.12); border: 1px solid rgba(74,143,232,0.25); }
+.fi-gold  { background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.25); }
 
-h1 {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 42px;
-line-height: 1;
-letter-spacing: 1px;
-margin-bottom: 14px;
-background: linear-gradient(135deg, #fff 50%, var(–gold-light));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
+.stats-strip { display: flex; gap: 0; margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; background: rgba(255,255,255,0.02); }
+.stat { flex: 1; padding: 14px 10px; text-align: center; position: relative; }
+.stat + .stat::before { content: ‘’; position: absolute; left: 0; top: 20%; bottom: 20%; width: 1px; background: rgba(255,255,255,0.06); }
+.stat-num { font-family: ‘Bebas Neue’, sans-serif; font-size: 24px; letter-spacing: 1px; line-height: 1; margin-bottom: 3px; }
+.stat-label { font-size: 10px; color: #555; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; }
+.s-gold { color: var(–gold-light); }
+.s-teal { color: var(–teal); }
+.s-amber { color: var(–amber-light); }
 
-.subtitle {
-font-size: 15px;
-color: var(–muted);
-line-height: 1.6;
-font-weight: 300;
-margin-bottom: 36px;
-max-width: 360px;
-margin-left: auto;
-margin-right: auto;
-}
-
-/* What they get */
-.features {
-display: flex;
-flex-direction: column;
-gap: 10px;
-margin-bottom: 36px;
-text-align: left;
-}
-.feature {
-display: flex;
-align-items: center;
-gap: 12px;
-font-size: 14px;
-color: #aaa;
-}
-.feature-icon {
-width: 28px; height: 28px;
-border-radius: 6px;
-background: var(–gold-dim);
-border: 1px solid var(–border);
-display: flex; align-items: center; justify-content: center;
-font-size: 13px;
-flex-shrink: 0;
-}
-
-/* CTA Button */
-.btn-connect {
-width: 100%;
-background: linear-gradient(135deg, var(–gold) 0%, var(–gold-light) 100%);
-color: #000;
-border: none;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 20px;
-letter-spacing: 2px;
-padding: 18px 32px;
-border-radius: 10px;
-cursor: pointer;
-transition: transform 0.2s, box-shadow 0.2s;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-text-decoration: none;
-position: relative;
-overflow: hidden;
-}
-
-.btn-connect::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-opacity: 0;
-transition: opacity 0.2s;
-}
-
-.btn-connect:hover {
-transform: translateY(-2px);
-box-shadow: 0 12px 32px rgba(201,168,76,0.35);
-}
+.btn-connect { width: 100%; background: linear-gradient(135deg, var(–amber) 0%, var(–gold) 40%, var(–gold-light) 100%); color: #000; border: none; font-family: ‘Bebas Neue’, sans-serif; font-size: 22px; letter-spacing: 2.5px; padding: 19px 32px; border-radius: 12px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, filter 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; position: relative; overflow: hidden; box-shadow: 0 6px 30px rgba(201,168,76,0.25), 0 2px 8px rgba(0,0,0,0.3); }
+.btn-connect::before { content: ‘’; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 60%); opacity: 0; transition: opacity 0.25s; }
+.btn-connect:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(201,168,76,0.45), 0 4px 12px rgba(0,0,0,0.4); filter: brightness(1.05); }
 .btn-connect:hover::before { opacity: 1; }
 .btn-connect:active { transform: translateY(0); }
 
-.btn-icon {
-font-size: 18px;
-}
+.security { margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #444; }
+.lock-icon { width: 14px; height: 14px; background: rgba(0,196,160,0.15); border: 1px solid rgba(0,196,160,0.25); border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 8px; }
 
-/* Security note */
-.security {
-margin-top: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 6px;
-font-size: 12px;
-color: #555;
-}
-.security::before {
-content: ‘🔒’;
-font-size: 11px;
-}
+.divider { display: flex; align-items: center; gap: 12px; margin: 26px 0; color: #2a2a2a; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+.divider::before, .divider::after { content: ‘’; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent); }
 
-/* Divider */
-.divider {
-display: flex;
-align-items: center;
-gap: 12px;
-margin: 28px 0;
-color: #333;
-font-size: 11px;
-letter-spacing: 1px;
-text-transform: uppercase;
-}
-.divider::before, .divider::after {
-content: ‘’;
-flex: 1;
-height: 1px;
-background: #222;
-}
+.footer { margin-top: 28px; font-size: 12px; color: #333; animation: fadeUp 1s ease 0.3s both; }
+.footer a { color: var(–gold); text-decoration: none; }
 
-/* Footer */
-.footer {
-margin-top: 32px;
-font-size: 12px;
-color: #444;
-animation: fadeUp 1s ease 0.3s both;
-}
-.footer a {
-color: var(–gold);
-text-decoration: none;
-}
+.success-icon { width: 84px; height: 84px; border-radius: 50%; background: linear-gradient(135deg, rgba(0,196,160,0.15), rgba(201,168,76,0.1)); border: 2px solid var(–teal); display: flex; align-items: center; justify-content: center; font-size: 34px; margin: 0 auto 24px; animation: scaleIn 0.5s ease forwards; box-shadow: 0 0 40px rgba(0,196,160,0.2); }
+@keyframes scaleIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-/* Success state */
-.success-state {
-display: none;
-flex-direction: column;
-align-items: center;
-text-align: center;
-}
-.success-icon {
-width: 80px; height: 80px;
-border-radius: 50%;
-background: var(–gold-dim);
-border: 2px solid var(–gold);
-display: flex; align-items: center; justify-content: center;
-font-size: 32px;
-margin-bottom: 24px;
-animation: scaleIn 0.5s ease forwards;
-}
-@keyframes scaleIn {
-from { transform: scale(0.5); opacity: 0; }
-to { transform: scale(1); opacity: 1; }
-}
+.error-icon { width: 84px; height: 84px; border-radius: 50%; background: rgba(232,97,74,0.12); border: 2px solid var(–coral); display: flex; align-items: center; justify-content: center; font-size: 34px; margin: 0 auto 24px; animation: scaleIn 0.5s ease forwards; box-shadow: 0 0 40px rgba(232,97,74,0.15); }
 
-/* Error state */
-.error-state {
-display: none;
-flex-direction: column;
-align-items: center;
-text-align: center;
-}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 </style>
 
 </head>
 <body>
 
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
 <div class="container">
 
   <div class="logo">
-    <div class="logo-mark">H</div>
+    <div class="logo-img-wrap">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 65 Q10 35 35 20 Q20 25 18 50 Q16 65 35 80 Q20 78 15 65Z" fill="#C9A84C"/>
+        <path d="M85 35 Q90 65 65 80 Q80 75 82 50 Q84 35 65 20 Q80 22 85 35Z" fill="#C9A84C"/>
+        <path d="M50 18 L20 45 L26 45 L26 75 L74 75 L74 45 L80 45 Z" fill="none" stroke="#C9A84C" stroke-width="5" stroke-linejoin="round"/>
+        <rect x="42" y="52" width="7" height="7" rx="1" fill="#C9A84C"/>
+        <rect x="51" y="52" width="7" height="7" rx="1" fill="#C9A84C"/>
+        <rect x="42" y="61" width="7" height="7" rx="1" fill="#C9A84C"/>
+        <rect x="51" y="61" width="7" height="7" rx="1" fill="#C9A84C"/>
+      </svg>
+    </div>
     <div class="logo-text">HERMIA</div>
   </div>
-
-  <!-- Main card -->
 
   <div class="card" id="mainCard">
     <div class="step-badge"><span class="dot"></span>Final Step</div>
     <h1>CONNECT YOUR HUBSPOT</h1>
-    <p class="subtitle">Grant Hermia access to your HubSpot so we can automatically push qualified leads, update contacts, and track your pipeline.</p>
+    <p class="subtitle">Grant Hermia access to your HubSpot so we can automatically push qualified leads, update contacts, and track your pipeline in real time.</p>
 
 ```
+<div class="stats-strip">
+  <div class="stat"><div class="stat-num s-gold">100+</div><div class="stat-label">Leads/Week</div></div>
+  <div class="stat"><div class="stat-num s-teal">10+</div><div class="stat-label">New Weekly</div></div>
+  <div class="stat"><div class="stat-num s-amber">24h</div><div class="stat-label">Activation</div></div>
+</div>
+
 <div class="features">
-  <div class="feature">
-    <div class="feature-icon">⚡</div>
-    Leads auto-pushed into your HubSpot contacts
-  </div>
-  <div class="feature">
-    <div class="feature-icon">📋</div>
-    Lead status and qualification scores updated automatically
-  </div>
-  <div class="feature">
-    <div class="feature-icon">📅</div>
-    Inspection bookings synced to your pipeline
-  </div>
-  <div class="feature">
-    <div class="feature-icon">🔒</div>
-    Read-only where possible — we never delete your data
-  </div>
+  <div class="feature"><div class="feature-icon fi-amber">⚡</div>Leads auto-pushed into your HubSpot contacts instantly</div>
+  <div class="feature"><div class="feature-icon fi-teal">📋</div>AI qualification scores updated automatically per lead</div>
+  <div class="feature"><div class="feature-icon fi-blue">📅</div>Inspection bookings synced live to your pipeline</div>
+  <div class="feature"><div class="feature-icon fi-gold">🔒</div>Read-only where possible — we never delete your data</div>
 </div>
 
 <a href="#" class="btn-connect" id="connectBtn" onclick="startOAuth(event)">
-  <span class="btn-icon">🔗</span>
+  <span>🔗</span>
   CONNECT HUBSPOT
 </a>
 
-<div class="security">Your data is encrypted and never shared with third parties</div>
+<div class="security">
+  <span class="lock-icon">🔒</span>
+  Your data is encrypted and never shared with third parties
+</div>
 
 <div class="divider">takes 10 seconds</div>
 
-<p style="font-size:13px; color:#444; line-height:1.6;">
-  You'll be redirected to HubSpot to approve access. Once approved, you'll be brought back here automatically and your workflow will activate within 24 hours.
+<p style="font-size:13px; color:#3a3a4a; line-height:1.65;">
+  You'll be redirected to HubSpot to approve access. Once approved, you'll be brought back here automatically and your workflow activates within 24 hours.
 </p>
 ```
 
   </div>
 
-  <!-- Success card -->
-
   <div class="card" id="successCard" style="display:none">
-    <div class="success-state" style="display:flex">
+    <div style="display:flex; flex-direction:column; align-items:center; text-align:center;">
       <div class="success-icon">✓</div>
       <div class="step-badge" style="margin-bottom:16px"><span class="dot"></span>Connected</div>
       <h1>YOU'RE LIVE!</h1>
-      <p class="subtitle">Your HubSpot is now connected to Hermia Lead Accelerator V8. Your workflow will be fully active within 24 hours.</p>
+      <p class="subtitle">Your HubSpot is now connected to Hermia Lead Accelerator V8. Workflow fully active within 24 hours.</p>
       <div class="features" style="text-align:left; width:100%">
-        <div class="feature"><div class="feature-icon">✅</div>HubSpot connected successfully</div>
-        <div class="feature"><div class="feature-icon">⏳</div>Workflow activation: within 24 hours</div>
-        <div class="feature"><div class="feature-icon">📧</div>Confirmation email sent to your inbox</div>
+        <div class="feature"><div class="feature-icon fi-teal">✅</div>HubSpot connected successfully</div>
+        <div class="feature"><div class="feature-icon fi-amber">⏳</div>Workflow activation: within 24 hours</div>
+        <div class="feature"><div class="feature-icon fi-blue">📧</div>Confirmation email sent to your inbox</div>
       </div>
       <p style="font-size:13px; color:#555; margin-top:16px;">Questions? Email <a href="mailto:capital@hermia.au" style="color:var(--gold)">capital@hermia.au</a></p>
     </div>
   </div>
 
-  <!-- Error card -->
-
   <div class="card" id="errorCard" style="display:none">
-    <div class="error-state" style="display:flex; flex-direction:column; align-items:center">
-      <div class="success-icon" style="border-color:#e05c5c; background:rgba(224,92,92,0.1)">✗</div>
-      <h1 style="font-size:32px">CONNECTION FAILED</h1>
+    <div style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+      <div class="error-icon">✗</div>
+      <h1 style="font-size:34px">CONNECTION FAILED</h1>
       <p class="subtitle">Something went wrong. Please try again or contact support.</p>
       <a href="#" class="btn-connect" onclick="location.reload()">TRY AGAIN</a>
       <p style="font-size:13px; color:#555; margin-top:16px;">Need help? <a href="mailto:capital@hermia.au" style="color:var(--gold)">capital@hermia.au</a></p>
@@ -402,9 +256,6 @@ text-align: center;
 </div>
 
 <script>
-  // ============================================
-  // CONFIGURATION — swap these values
-  // ============================================
   const CLIENT_ID = 'b55241b1-d8a3-4f93-8541-2b4cded003dc';
   const REDIRECT_URI = 'https://hermia.au/callback';
   const SCOPES = [
@@ -414,56 +265,33 @@ text-align: center;
     'oauth'
   ].join(' ');
 
-  // ============================================
-  // OAuth Flow
-  // ============================================
   function startOAuth(e) {
     e.preventDefault();
     const btn = document.getElementById('connectBtn');
     btn.innerHTML = '<span style="animation:spin 1s linear infinite;display:inline-block">⟳</span> &nbsp;REDIRECTING...';
     btn.style.opacity = '0.8';
     btn.style.pointerEvents = 'none';
-
     const authUrl = `https://app.hubspot.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${encodeURIComponent(SCOPES)}`;
-
-    setTimeout(() => {
-      window.location.href = authUrl;
-    }, 600);
+    setTimeout(() => { window.location.href = authUrl; }, 600);
   }
 
-  // Check if we're on the callback (after HubSpot redirects back)
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
   const error = params.get('error');
 
   if (code) {
-    // Show success + send code to your backend
     document.getElementById('mainCard').style.display = 'none';
     document.getElementById('successCard').style.display = 'block';
-
-    // Send the code to your Make.com webhook
-    fetch('https://hook.eu1.make.com/YOUR_MAKE_WEBHOOK_HERE', {
+    fetch('https://hook.eu1.make.com/kmdclyt3r0jg5tbhgtc67piy9gognf', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        code: code,
-        redirect_uri: REDIRECT_URI,
-        timestamp: new Date().toISOString()
-      })
+      body: JSON.stringify({ code, redirect_uri: REDIRECT_URI, timestamp: new Date().toISOString() })
     }).catch(err => console.log('Webhook error:', err));
-
   } else if (error) {
     document.getElementById('mainCard').style.display = 'none';
     document.getElementById('errorCard').style.display = 'block';
   }
 </script>
-
-<style>
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-</style>
 
 </body>
 </html>
