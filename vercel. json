@@ -1,5 +1,10 @@
 {
   "rewrites": [
-    { "source": "/callback", "destination": "/callback.html" }
+    { "source": "/callback", "destination": "/callback.html" },
+    { "source": "/airtable", "destination": "/airtable.html" },
+    { "source": "/airtable-callback", "destination": "/airtable-callback.html" },
+    { "source": "/done", "destination": "/done.html" },
+    { "source": "/success", "destination": "/success.html" },
+    { "source": "/contract", "destination": "/contract.pdf" }
   ]
 }
