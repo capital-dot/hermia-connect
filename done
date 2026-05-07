@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hermia — You're All Set!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --gold: #C9A84C;
+  --gold-light: #e8c97a;
+  --dark: #0a0a0f;
+  --card: #16161f;
+  --border: #2a2a38;
+  --text: #e8e8f0;
+  --muted: #6b6b80;
+  --green: #4ade80;
+}
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(74,222,128,0.05) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Step indicator - all done */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #4ade80;
+  font-weight: 500;
+}
+
+.step-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+}
+
+.step-line {
+  width: 32px;
+  height: 1px;
+  background: #4ade80;
+  opacity: 0.4;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 52px 40px;
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 40px; right: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+
+.check-outer {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 28px;
+  position: relative;
+}
+
+.check-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(74,222,128,0.08);
+  border: 1px solid rgba(74,222,128,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.2); }
+  50% { box-shadow: 0 0 0 12px rgba(74,222,128,0); }
+}
+
+.check-icon {
+  font-size: 32px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(74,222,128,0.1);
+  border: 1px solid rgba(74,222,128,0.25);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+h1 span { color: var(--gold); }
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 28px;
+}
+
+.what-next {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.what-next-title {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.next-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.next-num {
+  width: 22px;
+  height: 22px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.next-text {
+  font-size: 13px;
+  color: #9999aa;
+  line-height: 1.5;
+}
+
+.next-text strong {
+  color: var(--text);
+  display: block;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.contact-box {
+  background: rgba(201,168,76,0.05);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.contact-box a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 11px;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.footer a { color: var(--gold); text-decoration: none; }
+
+@media (max-width: 480px) {
+  .card { padding: 36px 24px; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <div class="logo">⚡ HERMIA</div>
+
+  <div class="steps">
+    <div class="step"><div class="step-dot"></div>HubSpot</div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-dot"></div>Airtable</div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-dot"></div>Complete</div>
+  </div>
+
+  <div class="card">
+    <div class="check-outer">
+      <div class="check-ring">
+        <span class="check-icon">✓</span>
+      </div>
+    </div>
+
+```
+<div class="badge">✓ &nbsp; Setup Complete</div>
+
+<h1>You're All <span>Set!</span></h1>
+<p class="subtitle">
+  Thank you for choosing Hermia Lead Accelerator V8.<br>
+  Your workflow will be fully active within <strong style="color:#e8e8f0">24 hours</strong>.<br>
+  Check your email for next steps.
+</p>
+
+<div class="divider"></div>
+
+<div class="what-next">
+  <div class="what-next-title">What happens next</div>
+  <div class="next-item">
+    <div class="next-num">1</div>
+    <div class="next-text">
+      <strong>Check your email</strong>
+      You'll receive a confirmation and onboarding details from capital@hermia.au
+    </div>
+  </div>
+  <div class="next-item">
+    <div class="next-num">2</div>
+    <div class="next-text">
+      <strong>We set everything up</strong>
+      Our team will configure your personalised lead qualification workflow within 24 hours
+    </div>
+  </div>
+  <div class="next-item">
+    <div class="next-num">3</div>
+    <div class="next-text">
+      <strong>Leads start flowing</strong>
+      Qualified leads will automatically appear in your HubSpot CRM and Airtable
+    </div>
+  </div>
+</div>
+
+<div class="contact-box">
+  Questions? Email us at <a href="mailto:capital@hermia.au">capital@hermia.au</a> — we typically respond within 2 hours.
+</div>
+```
+
+  </div>
+
+  <div class="footer">
+    Hermia Lead Accelerator V8 &nbsp;·&nbsp; ABN 75 434 177 026 &nbsp;·&nbsp;
+    <a href="mailto:capital@hermia.au">capital@hermia.au</a>
+  </div>
+
+</body>
+</html>
