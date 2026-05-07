@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hermia — Connect Airtable</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --gold: #C9A84C;
+  --gold-light: #e8c97a;
+  --dark: #0a0a0f;
+  --dark2: #111118;
+  --card: #16161f;
+  --border: #2a2a38;
+  --text: #e8e8f0;
+  --muted: #6b6b80;
+}
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow orb */
+body::after {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 16px;
+}
+
+/* Step indicator */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.step.done { color: #4ade80; }
+.step.active { color: var(--gold); }
+
+.step-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.step.done .step-dot { background: #4ade80; }
+.step.active .step-dot { background: var(--gold); }
+
+.step-line {
+  width: 32px;
+  height: 1px;
+  background: var(--border);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+}
+
+/* Top gold line */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 40px; right: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 1px;
+}
+
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.airtable-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, #FCB400, #F82B60, #2D7FF9);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 32px rgba(248,43,96,0.3);
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+h1 span { color: var(--gold); }
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #9999aa;
+}
+
+.feature-icon {
+  width: 28px;
+  height: 28px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.btn-connect {
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #0a0a0f;
+  border: none;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+}
+
+.btn-connect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(201,168,76,0.4);
+}
+
+.btn-connect:active { transform: translateY(0); }
+
+.security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Success state */
+.success-card {
+  display: none;
+  text-align: center;
+}
+
+.check-wrap {
+  width: 72px;
+  height: 72px;
+  background: rgba(74,222,128,0.1);
+  border: 1px solid rgba(74,222,128,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 28px;
+}
+
+.loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,15,0.8);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.loading-overlay.show { display: flex; }
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.footer {
+  margin-top: 40px;
+  font-size: 11px;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 1px;
+}
+
+.footer a { color: var(--gold); text-decoration: none; }
+
+@media (max-width: 480px) {
+  .card { padding: 36px 24px; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <span class="logo-icon">⚡</span>
+    HERMIA
+  </div>
+
+  <div class="steps">
+    <div class="step done">
+      <div class="step-dot"></div>
+      HubSpot
+    </div>
+    <div class="step-line"></div>
+    <div class="step active">
+      <div class="step-dot"></div>
+      Airtable
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-dot"></div>
+      Complete
+    </div>
+  </div>
+
+  <div class="card" id="mainCard">
+    <div class="step-badge">Step 2 of 2</div>
+
+```
+<div class="airtable-icon">📊</div>
+
+<h1>Connect Your <span>Airtable</span></h1>
+<p class="subtitle">Grant Hermia access to your Airtable so we can archive and organise your leads automatically.</p>
+
+<div class="features">
+  <div class="feature">
+    <div class="feature-icon">📥</div>
+    Cold leads archived automatically
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🗂️</div>
+    Organised by suburb, budget & status
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🔒</div>
+    Read-only where possible — we never delete your data
+  </div>
+</div>
+
+<a href="#" class="btn-connect" id="connectBtn" onclick="startAirtableOAuth(event)">
+  🔗 &nbsp; Connect Airtable
+</a>
+
+<div class="security">
+  🔐 &nbsp; Your data is encrypted and never shared with third parties
+</div>
+```
+
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="footer">
+    Hermia Lead Accelerator V8 &nbsp;·&nbsp; <a href="mailto:capital@hermia.au">capital@hermia.au</a>
+  </div>
+
+  <script>
+    const CLIENT_ID = 'edf080d2-286b-4bd5-8cb8-dbc569bb08ee';
+    const REDIRECT_URI = 'https://hermia.au/airtable-callback.html';
+    const SCOPES = [
+      'data.records:read',
+      'data.records:write',
+      'schema.bases:read',
+      'schema.bases:write'
+    ].join(' ');
+
+    function startAirtableOAuth(e) {
+      e.preventDefault();
+      const btn = document.getElementById('connectBtn');
+      btn.innerHTML = '<span style="animation:spin 1s linear infinite;display:inline-block;border:2px solid #0a0a0f;border-top-color:transparent;width:16px;height:16px;border-radius:50%"></span>';
+      btn.style.opacity = '0.8';
+      btn.style.pointerEvents = 'none';
+
+      const state = Math.random().toString(36).substring(2);
+      sessionStorage.setItem('airtable_state', state);
+
+      const authUrl = `https://airtable.com/oauth2/v1/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=${encodeURIComponent(SCOPES)}&state=${state}`;
+
+      setTimeout(() => { window.location.href = authUrl; }, 600);
+    }
+
+    // Check if coming back from error
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('error')) {
+      const btn = document.getElementById('connectBtn');
+      btn.innerHTML = '⚠️ &nbsp; Try Again';
+    }
+  </script>
+
+</body>
+</html>
