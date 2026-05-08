@@ -69,7 +69,7 @@ h1 { font-size: 28px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.
 
   <div class="checkmark">✅</div>
   <h1>Airtable Connected</h1>
-  <p class="subtitle">Finalizing your Hermia setup...</p>
+  <p class="subtitle">Redirecting to payment...</p>
   <div class="spinner"></div>
   <div id="error" class="error" style="display:none;"></div>
 </div>
@@ -97,7 +97,7 @@ if (!code || !email || !verifier) {
   })
   .then(() => {
     setTimeout(() => {
-      window.location.href = `https://hermia.au/done.html?email=${encodeURIComponent(email)}`;
+      window.location.href = `https://buy.stripe.com/5kQbJ30J32AkfIS8Ek9EI04?prefilled_email=${encodeURIComponent(email)}`;
     }, 2000);
   })
   .catch(() => {
