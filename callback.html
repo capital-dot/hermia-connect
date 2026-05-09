@@ -99,7 +99,7 @@ h1 { font-size: 28px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.
   <div class="step-label">Step 2 of 3</div>
 
   <div class="checkmark">✅</div>
-  <h1>HubSpot Connected</h1>
+  <h1>Zoho CRM Connected</h1>
   <p class="subtitle">Setting up your Airtable connection...</p>
   <div class="spinner"></div>
   <div id="error" class="error" style="display:none;"></div>
@@ -111,25 +111,27 @@ const code = params.get('code');
 const email = params.get('state');
 const errorBox = document.getElementById('error');
 
-if (!code || !email) {
+if (!code) {
   errorBox.textContent = 'Connection error. Please contact capital@hermia.au';
   errorBox.style.display = 'block';
 } else {
   fetch('https://hook.eu1.make.com/txewew1xu6nbctosap1v2kxorz88xbq2', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ type: 'hubspot', code: code, email: email })
+    body: JSON.stringify({ type: 'zoho', code: code, email: email || '' })
   })
   .then(() => {
     setTimeout(() => {
-      window.location.href = `https://hermia.au/airtable.html?email=${encodeURIComponent(email)}`;
+      window.location.href = `https://hermia.au/airtable.html${email ? '?email=' + encodeURIComponent(email) : ''}`;
     }, 2000);
   })
   .catch(() => {
-    errorBox.textContent = 'Connection error. Please contact capital@hermia.au';
-    errorBox.style.display = 'block';
+    setTimeout(() => {
+      window.location.href = `https://hermia.au/airtable.html${email ? '?email=' + encodeURIComponent(email) : ''}`;
+    }, 2000);
   });
 }
 </script>
 </body>
 </html>
+
