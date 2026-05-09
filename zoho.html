@@ -33,18 +33,8 @@ body {
 .progress { display: flex; gap: 8px; margin-bottom: 12px; }
 .progress-dot { flex: 1; height: 4px; background: var(--light-gray); border-radius: 2px; }
 .progress-dot.active { background: var(--black); }
-.step-label { font-size: 13px; color: var(--gray); margin-bottom: 24px; font-weight: 500; }
-h1 { font-size: 28px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
-.subtitle { font-size: 16px; color: var(--gray); line-height: 1.5; margin-bottom: 32px; }
-.features {
-  text-align: left; margin-bottom: 32px;
-  display: flex; flex-direction: column; gap: 12px;
-}
-.feature {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 14px; color: var(--gray);
-  padding: 10px 14px; background: var(--cream); border-radius: 8px;
-}
+.step-label { font-size: 13px; color: var(--gray); margin-bottom: 40px; font-weight: 500; }
+h1 { font-size: 28px; font-weight: 700; margin-bottom: 40px; letter-spacing: -0.5px; }
 .btn {
   width: 100%; padding: 16px;
   background: var(--black); color: var(--white);
@@ -85,14 +75,6 @@ h1 { font-size: 28px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.
   <div class="step-label">Step 1 of 3 — Connect your CRM</div>
 
   <h1>Connect Zoho CRM</h1>
-  <p class="subtitle">Grant Hermia access to your Zoho CRM so qualified leads flow in automatically — no manual entry ever.</p>
-
-  <div class="features">
-    <div class="feature">✅ Leads auto-pushed into your CRM instantly</div>
-    <div class="feature">✅ AI qualification scores on every lead</div>
-    <div class="feature">✅ Inspection bookings synced live</div>
-    <div class="feature">✅ We never delete your existing data</div>
-  </div>
 
   <button class="btn" id="connectBtn" onclick="startZohoOAuth()">
     Connect Zoho CRM →
