@@ -86,15 +86,15 @@ h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.
     <div class="progress-dot active"></div>
     <div class="progress-dot"></div>
   </div>
-  <div class="step-label">Step 2 of 3</div>
+  <div class="step-label">Step 2 of 3 — Connect your database</div>
 
   <h1>Connect your Airtable</h1>
-  <p class="subtitle">Final connection — Airtable stores your cold leads for nurture campaigns.</p>
+  <p class="subtitle">Hermia will automatically build your lead database — tables, fields, and pipelines all set up instantly.</p>
 
   <button id="connectBtn" class="btn">Connect Airtable →</button>
   <div id="error" class="error" style="display:none;"></div>
 
-  <p class="security">🔒 Secure OAuth + PKCE connection.</p>
+  <p class="security">🔒 Secure OAuth connection · We never delete your data</p>
 </div>
 
 <script>
@@ -117,10 +117,18 @@ async function generateCodeChallenge(verifier) {
 }
 
 if (!email) {
-  btn.disabled = true;
-  btn.style.opacity = 0.4;
-  errorBox.textContent = 'Invalid setup link. Please use the link from your welcome email.';
-  errorBox.style.display = 'block';
+  btn.addEventListener('click', async () => {
+    const verifier = generateCodeVerifier();
+    const challenge = await generateCodeChallenge(verifier);
+    sessionStorage.setItem('airtable_verifier', verifier);
+
+    const clientId = 'edf080d2-286b-4bd5-8cb8-dbc569bb08ee';
+    const redirectUri = encodeURIComponent('https://hermia.au/airtable-callback.html');
+    const scopes = encodeURIComponent('data.records:read data.records:write schema.bases:read schema.bases:write workspacesAndBases:read');
+    const state = encodeURIComponent(email || '');
+
+    window.location.href = `https://airtable.com/oauth2/v1/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scopes}&state=${state}&code_challenge=${challenge}&code_challenge_method=S256`;
+  });
 } else {
   btn.addEventListener('click', async () => {
     const verifier = generateCodeVerifier();
@@ -129,7 +137,7 @@ if (!email) {
 
     const clientId = 'edf080d2-286b-4bd5-8cb8-dbc569bb08ee';
     const redirectUri = encodeURIComponent('https://hermia.au/airtable-callback.html');
-    const scopes = encodeURIComponent('data.records:read data.records:write schema.bases:read schema.bases:write');
+    const scopes = encodeURIComponent('data.records:read data.records:write schema.bases:read schema.bases:write workspacesAndBases:read');
     const state = encodeURIComponent(email);
 
     window.location.href = `https://airtable.com/oauth2/v1/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scopes}&state=${state}&code_challenge=${challenge}&code_challenge_method=S256`;
@@ -138,4 +146,3 @@ if (!email) {
 </script>
 </body>
 </html>
-
