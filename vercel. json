@@ -2,11 +2,8 @@
   "rewrites": [
     { "source": "/zoho", "destination": "/zoho.html" },
     { "source": "/zoho-callback", "destination": "/zoho-callback.html" },
-    { "source": "/airtable", "destination": "/airtable.html" },
-    { "source": "/airtable-callback", "destination": "/airtable-callback.html" },
     { "source": "/done", "destination": "/done.html" },
     { "source": "/success", "destination": "/success.html" },
     { "source": "/contract", "destination": "/contract.pdf" }
   ]
 }
-
