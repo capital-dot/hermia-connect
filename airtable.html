@@ -133,7 +133,7 @@ if (!email) {
   btn.addEventListener('click', async () => {
     const verifier = generateCodeVerifier();
     const challenge = await generateCodeChallenge(verifier);
-    sessionStorage.setItem('airtable_verifier', verifier);
+    localStorage.setItem('airtable_verifier', verifier);
 
     const clientId = 'edf080d2-286b-4bd5-8cb8-dbc569bb08ee';
     const redirectUri = encodeURIComponent('https://hermia.au/airtable-callback.html');
