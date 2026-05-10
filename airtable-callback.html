@@ -78,7 +78,7 @@ h1 { font-size: 28px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.
 const params = new URLSearchParams(window.location.search);
 const code = params.get('code');
 const email = params.get('state');
-const verifier = sessionStorage.getItem('airtable_verifier');
+const verifier = localStorage.getItem('airtable_verifier');
 const errorBox = document.getElementById('error');
 
 if (!code) {
