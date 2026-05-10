@@ -81,7 +81,7 @@ const email = params.get('state');
 const verifier = sessionStorage.getItem('airtable_verifier');
 const errorBox = document.getElementById('error');
 
-if (!code || !email || !verifier) {
+if (!code) {
   errorBox.textContent = 'Connection error. Please contact capital@hermia.au';
   errorBox.style.display = 'block';
 } else {
