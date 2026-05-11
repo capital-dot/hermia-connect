@@ -5,54 +5,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hermia — Connect Zoho CRM</title>
 <style>
-:root { --black: #000; --cream: #FAF8F4; --gold: #C9A961; }
+:root {
+  --black: #080808;
+  --cream: #FAF8F4;
+  --gold: #C9A35B;
+}
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--cream);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif;
+  background: var(--black);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  color: var(--cream);
 }
 .card {
-  background: white;
+  background: #111;
   max-width: 480px;
   width: 100%;
   padding: 48px 40px;
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 40px rgba(201,163,91,0.15);
   text-align: center;
+  border: 1px solid rgba(201,163,91,0.2);
 }
-h1 { font-size: 28px; margin-bottom: 40px; }
+.logo {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 32px;
+  display: block;
+}
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 40px;
+  color: #fff;
+}
 .btn {
   width: 100%;
   padding: 18px;
-  background: #000;
-  color: white;
+  background: var(--gold);
+  color: #000;
   font-size: 16px;
   font-weight: 600;
   border: none;
   border-radius: 12px;
   cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:hover {
+  background: #e8c17a;
+  transform: translateY(-2px);
+}
+.security {
+  margin-top: 24px;
+  font-size: 13px;
+  color: #aaa;
 }
 </style>
 </head>
 <body>
 <div class="card">
+  <img src="https://raw.githubusercontent.com/capital-dot/hermia-connect/main/logo.png" alt="Hermia" class="logo">
+
   <h1>Connect Zoho CRM</h1>
-  <button class="btn" onclick="startZohoOAuth()">Connect Zoho CRM →</button>
+
+  <button class="btn" onclick="startZohoOAuth()">
+    Connect Zoho CRM →
+  </button>
+
+  <div class="security">🔐 Secure • Encrypted • Australian Privacy Act Compliant</div>
 </div>
 
 <script>
 function startZohoOAuth() {
+  const btn = document.querySelector('.btn');
+  btn.innerHTML = 'Connecting to Zoho...';
+  btn.style.pointerEvents = 'none';
+
   const CLIENT_ID = '1000.0W6DBC9UGVR2OSKNQEOZSDNDXVLZ1B';
   const REDIRECT_URI = 'https://capital-dot.github.io/hermia-connect/zoho-callback.html';
   const SCOPES = 'ZohoCRM.modules.contacts.CREATE,ZohoCRM.modules.contacts.UPDATE,ZohoCRM.modules.leads.CREATE,ZohoCRM.modules.deals.CREATE,ZohoCRM.settings.fields.CREATE';
 
   const authUrl = `https://accounts.zoho.com.au/oauth/v2/auth?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&access_type=offline`;
-  
+
   window.location.href = authUrl;
 }
 </script>
