@@ -57,7 +57,6 @@
   </div>
 
   <script>
-    // Send the code to Make.com in the background
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
 
@@ -66,10 +65,10 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'zoho', code: code })
-      }).catch(() => {}); // silent fail - we already show success
+      }).catch(() => {});
     }
 
-    // Auto-redirect back to marketing page after 6 seconds
+    // Auto redirect after 6 seconds
     setTimeout(() => {
       window.location.href = 'https://capital-dot.github.io/hermia-connect/marketing.html';
     }, 6000);
