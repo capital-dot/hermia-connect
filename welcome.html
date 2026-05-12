@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Hermia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080808;
+  --card: #111111;
+  --border: rgba(201,163,91,0.15);
+  --gold: #C9A35B;
+  --gold-light: #e8c17a;
+  --gold-dim: rgba(201,163,91,0.08);
+  --cream: #f5f1e8;
+  --muted: #8a8580;
+  --soft: #b8b5ad;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--black);
+  color: var(--cream);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.container {
+max-width: 560px;
+width: 100%;
+}
+
+.header {
+text-align: center;
+margin-bottom: 48px;
+}
+
+.logo {
+width: 72px;
+height: 72px;
+margin: 0 auto 20px;
+display: block;
+filter: drop-shadow(0 0 24px rgba(201,163,91,0.35));
+}
+
+.brand {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 36px;
+font-weight: 700;
+color: #fff;
+display: block;
+margin-bottom: 10px;
+}
+
+.badge {
+display: inline-block;
+background: var(–gold-dim);
+border: 1px solid var(–border);
+border-radius: 100px;
+padding: 5px 16px;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 28px;
+}
+
+.greeting {
+font-size: 20px;
+color: var(–soft);
+line-height: 1.6;
+font-weight: 300;
+margin-bottom: 8px;
+}
+
+.headline {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 38px;
+font-weight: 700;
+color: #fff;
+line-height: 1.15;
+}
+
+.headline em {
+font-style: italic;
+color: var(–gold);
+}
+
+/* Steps */
+.steps-label {
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: var(–gold);
+margin: 44px 0 20px;
+}
+
+.step-btn {
+display: flex;
+align-items: center;
+gap: 18px;
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 22px 24px;
+text-decoration: none;
+color: var(–cream);
+margin-bottom: 14px;
+transition: all 0.25s;
+cursor: pointer;
+}
+
+.step-btn:hover {
+border-color: rgba(201,163,91,0.45);
+transform: translateY(-2px);
+box-shadow: 0 10px 32px rgba(0,0,0,0.4);
+}
+
+.step-icon {
+width: 44px;
+height: 44px;
+min-width: 44px;
+border-radius: 50%;
+background: var(–gold-dim);
+border: 1px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+}
+
+.step-text strong {
+display: block;
+font-size: 16px;
+font-weight: 600;
+color: #fff;
+margin-bottom: 3px;
+}
+
+.step-text span {
+font-size: 13px;
+color: var(–muted);
+font-weight: 300;
+}
+
+/* Contract CTA */
+.contract-btn {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+background: var(–gold);
+color: #000;
+font-weight: 700;
+font-size: 16px;
+padding: 20px 24px;
+border-radius: 14px;
+text-decoration: none;
+margin-top: 28px;
+transition: all 0.3s;
+}
+
+.contract-btn:hover {
+background: var(–gold-light);
+transform: translateY(-2px);
+box-shadow: 0 12px 32px rgba(201,163,91,0.3);
+}
+
+.footer-note {
+text-align: center;
+margin-top: 36px;
+font-size: 13px;
+color: var(–muted);
+line-height: 1.7;
+}
+
+.footer-note a {
+color: var(–gold);
+text-decoration: none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <img src="https://raw.githubusercontent.com/capital-dot/hermia-connect/main/logo.png" alt="Hermia" class="logo">
+    <span class="brand">Hermia</span>
+    <div class="badge">Your spot is reserved</div>
+    <p class="greeting">Welcome aboard.</p>
+    <h1 class="headline">Let's get you<br><em>up and running.</em></h1>
+  </div>
+
+  <div class="steps-label">Before you sign — watch these first</div>
+
+  <a href="https://www.loom.com/share/9c2a7e8fbf914715a48a5761197d0e5c" target="_blank" class="step-btn">
+    <div class="step-icon">▶</div>
+    <div class="step-text">
+      <strong>Watch: Welcome to Hermia</strong>
+      <span>How the system works — start here</span>
+    </div>
+  </a>
+
+  <a href="https://www.loom.com/share/61daca292e5c48c0a080b2b3235333da" target="_blank" class="step-btn">
+    <div class="step-icon">🔒</div>
+    <div class="step-text">
+      <strong>How your CRM data is protected</strong>
+      <span>What Hermia can and cannot access</span>
+    </div>
+  </a>
+
+  <a href="https://capital-dot.github.io/hermia-connect/contract.html" class="contract-btn">
+    📄 &nbsp;Read &amp; Sign Your Agreement
+  </a>
+
+  <div class="footer-note">
+    Questions? Reply to this email or contact<br>
+    <a href="mailto:capital@hermia.au">capital@hermia.au</a> — Archie will personally get back to you.
+  </div>
+</div>
+
+</body>
+</html>
