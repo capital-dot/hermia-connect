@@ -5,12 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hermia SaaS Services Agreement</title>
   <style>
-    body { font-family: 'DM Sans', system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 40px; background: #0a0a0a; color: #f5f1e8; line-height: 1.7; }
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+    body { 
+      font-family: 'DM Sans', system-ui, sans-serif; 
+      max-width: 800px; 
+      margin: 40px auto; 
+      padding: 40px; 
+      background: #0a0a0a; 
+      color: #f5f1e8; 
+      line-height: 1.7; 
+    }
     h1, h2 { color: #c9a35b; }
     .header { text-align: center; margin-bottom: 40px; }
-    .logo { width: 80px; height: 80px; margin-bottom: 16px; }
     .section { margin-bottom: 32px; }
     .highlight { background: rgba(201,163,91,0.1); padding: 20px; border-left: 4px solid #c9a35b; }
+    .agreement { 
+      background: #1a1a1a; 
+      padding: 28px; 
+      border-radius: 16px; 
+      margin: 40px 0; 
+      border: 2px solid #c9a35b; 
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      background: #c9a35b;
+      color: #000;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn:disabled {
+      background: #555;
+      color: #aaa;
+      cursor: not-allowed;
+    }
     footer { margin-top: 60px; text-align: center; font-size: 14px; color: #888; }
   </style>
 </head>
@@ -18,66 +53,73 @@
 
   <div class="header">
     <h1>Hermia SaaS Services Agreement</h1>
-    <p><strong>Effective Date:</strong> [Insert Date]</p>
   </div>
 
-  <div class="section">
-    <h2>1. Parties</h2>
-    <p>This Agreement is entered into between <strong>Hermia AI</strong> (“Provider”) and the Client.</p>
+  <h2>1. Parties</h2>
+  <p>This Agreement is entered into between <strong>Hermia AI</strong> (“Provider”) and the Client.</p>
+
+  <h2>2. Services</h2>
+  <p>The Provider shall provide the Client with access to the Hermia AI Lead Qualification System. This system automatically engages with property enquiries, qualifies leads through intelligent conversation, scores them (Hot / Warm / Cold), and sends qualified leads directly into the Client’s CRM.</p>
+
+  <h2>3. Pricing & Payment</h2>
+  <div class="highlight">
+    <p><strong>Monthly subscription fee: $188 AUD per month</strong><br>
+    Billed automatically. No long-term contract — cancel anytime.</p>
   </div>
 
-  <div class="section">
-    <h2>2. Services</h2>
-    <p>The Provider shall provide the Client with access to the <strong>Hermia AI Lead Qualification System</strong>. This system automatically engages with property enquiries, qualifies leads through intelligent conversation, scores them (Hot / Warm / Cold), and sends qualified leads directly into the Client’s CRM.</p>
-  </div>
+  <h2>4. What is Included</h2>
+  <ul>
+    <li>AI Lead Qualification System</li>
+    <li>Automatic lead scoring (Hot / Warm / Cold)</li>
+    <li>Direct integration into Client’s CRM (Zoho)</li>
+    <li>24/7 operation</li>
+    <li>Email support</li>
+  </ul>
 
-  <div class="section">
-    <h2>3. Pricing & Payment</h2>
-    <p class="highlight">
-      Monthly subscription fee: <strong>$188 AUD per month</strong><br>
-      Billed automatically on the same date each month.<br>
-      No long-term contract — cancel anytime.
-    </p>
-  </div>
+  <h2>5. Client Responsibilities</h2>
+  <ul>
+    <li>Provide accurate CRM connection details</li>
+    <li>Create the required custom fields in their CRM</li>
+    <li>Use the system in compliance with Australian laws</li>
+  </ul>
 
-  <div class="section">
-    <h2>4. What is Included</h2>
-    <ul>
-      <li>AI Lead Qualification System</li>
-      <li>Automatic lead scoring (Hot / Warm / Cold)</li>
-      <li>Direct integration into Client’s CRM (Zoho)</li>
-      <li>24/7 operation</li>
-      <li>Email support</li>
-    </ul>
-  </div>
+  <h2>6. Data & Privacy</h2>
+  <p>All data stays inside the Client’s CRM. Hermia only reads what is necessary to qualify leads. The Client can disconnect access at any time. Hermia complies with the Australian Privacy Act 1988.</p>
 
-  <div class="section">
-    <h2>5. Client Responsibilities</h2>
-    <ul>
-      <li>Provide accurate CRM connection details</li>
-      <li>Create the required custom fields in their CRM (simple one-time setup)</li>
-      <li>Use the system in compliance with Australian laws</li>
-    </ul>
-  </div>
+  <h2>7. Termination</h2>
+  <p>Either party may terminate this agreement with 30 days’ notice. Upon termination, access ends immediately and no further charges will apply.</p>
 
-  <div class="section">
-    <h2>6. Data & Privacy</h2>
-    <p>All data stays inside the Client’s CRM. Hermia only reads what is necessary to qualify leads. The Client can disconnect access at any time. Hermia complies with the Australian Privacy Act 1988.</p>
-  </div>
+  <h2>8. Limitation of Liability</h2>
+  <p>Hermia qualifies existing leads but does not generate new leads. The Provider is not responsible for the Client’s conversion rates or business outcomes.</p>
 
-  <div class="section">
-    <h2>7. Termination</h2>
-    <p>Either party may terminate this agreement with 30 days’ notice. Upon termination, access ends immediately and no further charges will apply.</p>
-  </div>
+  <!-- AGREEMENT SECTION (THIS IS WHAT WAS MISSING) -->
+  <div class="agreement">
+    <label style="display:flex;align-items:center;gap:12px;cursor:pointer;font-size:17px;">
+      <input type="checkbox" id="agreeCheckbox" style="width:24px;height:24px;accent-color:#c9a35b;">
+      <span>I agree to the terms and conditions of this Hermia SaaS Services Agreement</span>
+    </label>
 
-  <div class="section">
-    <h2>8. Limitation of Liability</h2>
-    <p>Hermia qualifies existing leads but does not generate new leads. The Provider is not responsible for the Client’s conversion rates or business outcomes.</p>
+    <button id="payButton" class="btn" disabled onclick="proceedToPayment()">
+      Make Payment — Secure My Spot $188/month
+    </button>
   </div>
 
   <footer>
     © 2026 Hermia AI • ABN 75 434 177 026 • capital@hermia.au
   </footer>
+
+  <script>
+    const checkbox = document.getElementById('agreeCheckbox');
+    const button = document.getElementById('payButton');
+
+    checkbox.addEventListener('change', function() {
+      button.disabled = !this.checked;
+    });
+
+    function proceedToPayment() {
+      window.location.href = "https://buy.stripe.com/5kQbJ30J32AkfIS8Ek9EI04";
+    }
+  </script>
 
 </body>
 </html>
