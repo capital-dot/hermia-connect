@@ -1,193 +1,192 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome to Hermia</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Welcome to Hermia • Archie</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black: #080808;
+  --black: #0a0a0a;
   --card: #111111;
-  --border: rgba(201,163,91,0.15);
   --gold: #C9A35B;
   --gold-light: #e8c17a;
-  --gold-dim: rgba(201,163,91,0.08);
   --cream: #f5f1e8;
-  --muted: #8a8580;
-  --soft: #b8b5ad;
+  --muted: #a8a39a;
 }
+
 * { margin:0; padding:0; box-sizing:border-box; }
+
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background: var(--black);
-  color: var(--cream);
+  color: #e8e6e1;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
+  line-height: 1.6;
 }
 
 .container {
-max-width: 560px;
-width: 100%;
+  max-width: 560px;
+  width: 100%;
 }
 
 .header {
-text-align: center;
-margin-bottom: 48px;
+  text-align: center;
+  margin-bottom: 52px;
 }
 
 .logo {
-width: 72px;
-height: 72px;
-margin: 0 auto 20px;
-display: block;
-filter: drop-shadow(0 0 24px rgba(201,163,91,0.35));
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  display: block;
+  filter: drop-shadow(0 4px 20px rgba(201,163,91,0.4));
 }
 
 .brand {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 36px;
-font-weight: 700;
-color: #fff;
-display: block;
-margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -1px;
 }
 
 .badge {
-display: inline-block;
-background: var(–gold-dim);
-border: 1px solid var(–border);
-border-radius: 100px;
-padding: 5px 16px;
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–gold);
-margin-bottom: 28px;
+  display: inline-block;
+  background: rgba(201,163,91,0.1);
+  border: 1px solid rgba(201,163,91,0.3);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 20px;
+  border-radius: 9999px;
+  margin: 20px 0 16px;
 }
 
 .greeting {
-font-size: 20px;
-color: var(–soft);
-line-height: 1.6;
-font-weight: 300;
-margin-bottom: 8px;
+  font-size: 19px;
+  color: var(--muted);
+  margin-bottom: 8px;
 }
 
 .headline {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 38px;
-font-weight: 700;
-color: #fff;
-line-height: 1.15;
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
 }
 
 .headline em {
-font-style: italic;
-color: var(–gold);
+  font-style: italic;
+  color: var(--gold);
 }
 
 /* Steps */
 .steps-label {
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 2.5px;
-text-transform: uppercase;
-color: var(–gold);
-margin: 44px 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 48px 0 24px;
+  text-align: center;
 }
 
 .step-btn {
-display: flex;
-align-items: center;
-gap: 18px;
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 16px;
-padding: 22px 24px;
-text-decoration: none;
-color: var(–cream);
-margin-bottom: 14px;
-transition: all 0.25s;
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--card);
+  border: 1px solid rgba(201,163,91,0.2);
+  border-radius: 20px;
+  padding: 24px 28px;
+  text-decoration: none;
+  color: #e8e6e1;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
 }
 
 .step-btn:hover {
-border-color: rgba(201,163,91,0.45);
-transform: translateY(-2px);
-box-shadow: 0 10px 32px rgba(0,0,0,0.4);
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
 .step-icon {
-width: 44px;
-height: 44px;
-min-width: 44px;
-border-radius: 50%;
-background: var(–gold-dim);
-border: 1px solid var(–border);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 18px;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  background: rgba(201,163,91,0.1);
+  border: 1px solid rgba(201,163,91,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--gold);
 }
 
 .step-text strong {
-display: block;
-font-size: 16px;
-font-weight: 600;
-color: #fff;
-margin-bottom: 3px;
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
 }
 
 .step-text span {
-font-size: 13px;
-color: var(–muted);
-font-weight: 300;
+  font-size: 14.5px;
+  color: var(--muted);
 }
 
-/* Contract CTA */
+/* Main CTA */
 .contract-btn {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-background: var(–gold);
-color: #000;
-font-weight: 700;
-font-size: 16px;
-padding: 20px 24px;
-border-radius: 14px;
-text-decoration: none;
-margin-top: 28px;
-transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--gold);
+  color: #111;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 22px 32px;
+  border-radius: 18px;
+  text-decoration: none;
+  margin-top: 32px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(201,163,91,0.3);
 }
 
 .contract-btn:hover {
-background: var(–gold-light);
-transform: translateY(-2px);
-box-shadow: 0 12px 32px rgba(201,163,91,0.3);
+  background: var(--gold-light);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(201,163,91,0.4);
 }
 
+/* Footer */
 .footer-note {
-text-align: center;
-margin-top: 36px;
-font-size: 13px;
-color: var(–muted);
-line-height: 1.7;
+  text-align: center;
+  margin-top: 48px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .footer-note a {
-color: var(–gold);
-text-decoration: none;
+  color: var(--gold);
+  text-decoration: none;
 }
+.footer-note a:hover { text-decoration: underline; }
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
@@ -195,7 +194,7 @@ text-decoration: none;
     <img src="https://raw.githubusercontent.com/capital-dot/hermia-connect/main/logo.png" alt="Hermia" class="logo">
     <span class="brand">Hermia</span>
     <div class="badge">Your spot is reserved</div>
-    <p class="greeting">Welcome aboard.</p>
+    <p class="greeting">Welcome aboard, Archie.</p>
     <h1 class="headline">Let's get you<br><em>up and running.</em></h1>
   </div>
 
@@ -218,11 +217,11 @@ text-decoration: none;
   </a>
 
   <a href="https://capital-dot.github.io/hermia-connect/contract.html" class="contract-btn">
-    📄 &nbsp;Read &amp; Sign Your Agreement
+    📄 &nbsp; Read &amp; Sign Your Agreement
   </a>
 
   <div class="footer-note">
-    Questions? Reply to this email or contact<br>
+    Questions? Just reply to this email or reach out to<br>
     <a href="mailto:capital@hermia.au">capital@hermia.au</a> — Archie will personally get back to you.
   </div>
 </div>
