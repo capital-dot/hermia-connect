@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,209 +16,39 @@
       --muted: #a8a39a;
       --soft: #d4d0c7;
     }
-
     * { margin:0; padding:0; box-sizing:border-box; }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--black);
-      color: var(--cream);
-      line-height: 1.75;
-      padding: 60px 20px;
-      max-width: 780px;
-      margin: 0 auto;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .logo {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 20px;
-      display: block;
-      filter: drop-shadow(0 4px 25px rgba(201,163,91,0.35));
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -1px;
-    }
-
-    .doc-date {
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    h2 {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin: 48px 0 16px;
-    }
-
-    p, li {
-      font-size: 16px;
-      color: var(--soft);
-      margin-bottom: 14px;
-    }
-
-    ul {
-      padding-left: 24px;
-      margin-bottom: 20px;
-    }
-
-    li { margin-bottom: 8px; }
-
-    strong { color: #fff; font-weight: 600; }
-
-    .highlight {
-      background: rgba(201,163,91,0.08);
-      border-left: 4px solid var(--gold);
-      padding: 22px 26px;
-      border-radius: 0 12px 12px 0;
-      margin: 24px 0;
-    }
-
-    .disclaimer {
-      background: rgba(201,163,91,0.06);
-      border: 1px solid rgba(201,163,91,0.35);
-      border-radius: 16px;
-      padding: 28px;
-      margin: 48px 0;
-    }
-
-    .disclaimer-title {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
-    }
-
-    .agreement {
-      background: var(--card);
-      border: 1px solid rgba(201,163,91,0.2);
-      border-radius: 24px;
-      padding: 44px 40px;
-      margin-top: 52px;
-    }
-
-    .agreement-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      color: #fff;
-      margin-bottom: 28px;
-      text-align: center;
-    }
-
-    .checkbox-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 32px;
-      cursor: pointer;
-    }
-
-    .checkbox-row input[type="checkbox"] {
-      width: 24px;
-      height: 24px;
-      margin-top: 3px;
-      accent-color: var(--gold);
-      cursor: pointer;
-    }
-
-    .checkbox-row span {
-      font-size: 16px;
-      line-height: 1.65;
-      color: var(--soft);
-    }
-
-    .country-picker {
-      display: none;
-      gap: 16px;
-      margin-top: 12px;
-    }
-
-    .country-picker.visible {
-      display: flex;
-    }
-
-    .pay-btn {
-      flex: 1;
-      padding: 26px 20px;
-      border-radius: 18px;
-      text-decoration: none;
-      text-align: center;
-      transition: all 0.3s ease;
-      opacity: 0;
-      transform: translateY(12px);
-    }
-
-    .pay-btn.lit {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .pay-btn-au {
-      background: var(--gold);
-      color: #111;
-      font-weight: 700;
-      font-size: 17px;
-    }
-
-    .pay-btn-au:hover {
-      background: var(--gold-light);
-      transform: translateY(-4px);
-      box-shadow: 0 15px 40px rgba(201,163,91,0.4);
-    }
-
-    .pay-btn-uae {
-      background: #fff;
-      color: #111;
-      font-weight: 700;
-      font-size: 17px;
-    }
-
-    .pay-btn-uae:hover {
-      background: #f5f1e8;
-      transform: translateY(-4px);
-      box-shadow: 0 15px 40px rgba(255,255,255,0.15);
-    }
-
-    .flag { font-size: 28px; display: block; margin-bottom: 8px; }
-    .amount { font-size: 14px; opacity: 0.85; margin-top: 4px; }
-
-    .pay-note {
-      text-align: center;
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 20px;
-      display: none;
-    }
-
-    .pay-note.visible { display: block; }
-
-    footer {
-      margin-top: 80px;
-      text-align: center;
-      font-size: 13.5px;
-      color: var(--muted);
-    }
-
-    @media (max-width: 600px) {
-      body { padding: 40px 20px; }
-      .country-picker { flex-direction: column; }
-    }
+    body { font-family:'Inter',system-ui,sans-serif; background:var(--black); color:var(--cream); line-height:1.75; padding:60px 20px; max-width:780px; margin:0 auto; }
+    .header { text-align:center; margin-bottom:60px; }
+    .logo { width:72px; height:72px; margin:0 auto 20px; display:block; filter:drop-shadow(0 4px 25px rgba(201,163,91,0.35)); }
+    h1 { font-family:'Playfair Display',serif; font-size:42px; font-weight:700; color:#fff; letter-spacing:-1px; }
+    .doc-date { font-size:14px; color:var(--muted); margin-top:8px; }
+    h2 { font-size:15px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); margin:48px 0 16px; }
+    p, li { font-size:16px; color:var(--soft); margin-bottom:14px; }
+    ul { padding-left:24px; margin-bottom:20px; }
+    li { margin-bottom:8px; }
+    strong { color:#fff; font-weight:600; }
+    .highlight { background:rgba(201,163,91,0.08); border-left:4px solid var(--gold); padding:22px 26px; border-radius:0 12px 12px 0; margin:24px 0; }
+    .disclaimer { background:rgba(201,163,91,0.06); border:1px solid rgba(201,163,91,0.35); border-radius:16px; padding:28px; margin:48px 0; }
+    .disclaimer-title { font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+    .agreement { background:var(--card); border:1px solid rgba(201,163,91,0.2); border-radius:24px; padding:44px 40px; margin-top:52px; }
+    .agreement-title { font-family:'Playfair Display',serif; font-size:28px; color:#fff; margin-bottom:28px; text-align:center; }
+    .checkbox-row { display:flex; align-items:flex-start; gap:16px; margin-bottom:32px; cursor:pointer; }
+    .checkbox-row input[type="checkbox"] { width:24px; height:24px; margin-top:3px; accent-color:var(--gold); cursor:pointer; }
+    .checkbox-row span { font-size:16px; line-height:1.65; color:var(--soft); }
+    .country-picker { display:none; gap:16px; margin-top:12px; }
+    .country-picker.visible { display:flex; }
+    .pay-btn { flex:1; padding:26px 20px; border-radius:18px; text-decoration:none; text-align:center; transition:all 0.3s ease; opacity:0; transform:translateY(12px); }
+    .pay-btn.lit { opacity:1; transform:translateY(0); }
+    .pay-btn-au { background:#C9A35B; color:#111; font-weight:700; font-size:17px; }
+    .pay-btn-au:hover { background:#e8c17a; transform:translateY(-4px); box-shadow:0 15px 40px rgba(201,163,91,0.4); }
+    .pay-btn-uae { background:#fff; color:#111; font-weight:700; font-size:17px; }
+    .pay-btn-uae:hover { background:#f5f1e8; transform:translateY(-4px); box-shadow:0 15px 40px rgba(255,255,255,0.15); }
+    .flag { font-size:28px; display:block; margin-bottom:8px; }
+    .amount { font-size:14px; opacity:0.85; margin-top:4px; }
+    .pay-note { text-align:center; font-size:14px; color:var(--muted); margin-top:20px; display:none; }
+    .pay-note.visible { display:block; }
+    footer { margin-top:80px; text-align:center; font-size:13.5px; color:var(--muted); }
+    @media(max-width:600px){ body{padding:40px 20px;} .country-picker{flex-direction:column;} }
   </style>
 </head>
 <body>
@@ -232,7 +63,7 @@
   <p>This Agreement is entered into between <strong>Hermia AI</strong> ("Provider") and the Client.</p>
 
   <h2>2. Services</h2>
-  <p>The Provider shall provide the Client with access to the Hermia AI Lead Qualification System. This system automatically engages with property enquiries, qualifies leads through intelligent conversation, scores them (Hot / Warm / Cold), and sends qualified leads directly into the Client’s CRM.</p>
+  <p>The Provider shall provide the Client with access to the Hermia AI Lead Qualification System. This system automatically engages with property enquiries, qualifies leads through intelligent conversation, scores them (Hot / Warm / Cold), and sends qualified leads directly into the Client's CRM.</p>
 
   <h2>3. Pricing & Payment</h2>
   <div class="highlight">
@@ -245,8 +76,10 @@
   <h2>4. What is Included</h2>
   <ul>
     <li>AI Lead Qualification System</li>
+    <li>WhatsApp & SMS buyer communication</li>
+    <li>Automatic inspection booking</li>
     <li>Automatic lead scoring (Hot / Warm / Cold)</li>
-    <li>Direct integration into Client’s CRM</li>
+    <li>Direct integration into Client's CRM</li>
     <li>24/7 operation</li>
     <li>Email & personal support</li>
   </ul>
@@ -259,29 +92,25 @@
   </ul>
 
   <h2>6. Data & Privacy</h2>
-  <p>All data stays inside the Client’s CRM. Hermia only reads what is necessary to qualify leads. The Client can disconnect access at any time. Full compliance with Australian Privacy Act 1988 and UAE data regulations.</p>
+  <p>All data stays inside the Client's CRM. Hermia only reads what is necessary to qualify leads. The Client can disconnect access at any time. Full compliance with Australian Privacy Act 1988 and UAE data regulations.</p>
 
   <h2>7. Termination</h2>
-  <p>Either party may terminate with 30 days’ notice. No further charges after termination.</p>
+  <p>Either party may terminate with 30 days' notice. No further charges after termination.</p>
 
   <h2>8. Limitation of Liability</h2>
   <p>Hermia qualifies your existing leads but does not generate new ones. The Provider is not responsible for conversion rates or business outcomes.</p>
 
-  <!-- DISCLAIMER -->
   <div class="disclaimer">
     <span class="disclaimer-title">⚠ Important — Please Read Before Signing</span>
     <p><strong>Hermia does not generate leads.</strong> We qualify the leads you already receive from Domain, Realestate.com.au, Property Finder, Bayut, or your website. You bring the leads — we make sure you only spend time on the ones worth pursuing.</p>
   </div>
 
-  <!-- AGREEMENT + PAYMENT -->
   <div class="agreement">
     <div class="agreement-title">Sign &amp; Proceed to Payment</div>
-
     <label class="checkbox-row">
       <input type="checkbox" id="agreeCheckbox">
       <span>I have read and agree to the terms and conditions of this Hermia SaaS Services Agreement, including the disclaimer above.</span>
     </label>
-
     <div class="country-picker" id="countryPicker">
       <a href="https://buy.stripe.com/5kQbJ30J32AkfIS8Ek9EI04" class="pay-btn pay-btn-au" id="btnAU">
         <span class="flag">🇦🇺</span>
@@ -294,7 +123,6 @@
         <span class="amount">AED 980 / month</span>
       </a>
     </div>
-
     <p class="pay-note" id="payNote">Select your country to continue to secure checkout via Stripe.</p>
   </div>
 
@@ -309,22 +137,15 @@
     const note = document.getElementById('payNote');
     const btnAU = document.getElementById('btnAU');
     const btnUAE = document.getElementById('btnUAE');
-
     checkbox.addEventListener('change', function () {
       if (this.checked) {
         picker.classList.add('visible');
         note.classList.add('visible');
-        setTimeout(() => {
-          btnAU.classList.add('lit');
-          btnUAE.classList.add('lit');
-        }, 100);
+        setTimeout(() => { btnAU.classList.add('lit'); btnUAE.classList.add('lit'); }, 100);
       } else {
         btnAU.classList.remove('lit');
         btnUAE.classList.remove('lit');
-        setTimeout(() => {
-          picker.classList.remove('visible');
-          note.classList.remove('visible');
-        }, 400);
+        setTimeout(() => { picker.classList.remove('visible'); note.classList.remove('visible'); }, 400);
       }
     });
   </script>
