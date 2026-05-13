@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,10 +9,11 @@
 :root {
   --black: #080808;
   --card: #111111;
-  --border: rgba(201,163,91,0.15);
+  --border: rgba(201,163,91,0.25);
   --gold: #C9A35B;
   --gold-light: #e8c17a;
-  --gold-dim: rgba(201,163,91,0.08);
+  --gold-dark: #b38a4a;
+  --gold-dim: rgba(201,163,91,0.12);
   --cream: #f5f1e8;
   --muted: #8a8580;
   --soft: #b8b5ad;
@@ -28,180 +28,187 @@ body {
 }
 
 .container {
-max-width: 620px;
-margin: 0 auto;
+  max-width: 620px;
+  margin: 0 auto;
 }
 
 .header {
-text-align: center;
-margin-bottom: 52px;
+  text-align: center;
+  margin-bottom: 52px;
 }
 
 .logo {
-width: 64px;
-height: 64px;
-display: block;
-margin: 0 auto 18px;
-filter: drop-shadow(0 0 24px rgba(201,163,91,0.35));
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 0 auto 18px;
+  filter: drop-shadow(0 0 24px rgba(201,163,91,0.5));
 }
 
 .badge {
-display: inline-block;
-background: var(–gold-dim);
-border: 1px solid var(–border);
-border-radius: 100px;
-padding: 5px 16px;
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–gold);
-margin-bottom: 20px;
+  display: inline-block;
+  background: var(--gold-dim);
+  border: 1px solid var(--gold);
+  border-radius: 100px;
+  padding: 6px 18px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  box-shadow: 0 0 0 1px rgba(201,163,91,0.3);
 }
 
 h1 {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 48px;
-font-weight: 700;
-color: #fff;
-line-height: 1.1;
-margin-bottom: 12px;
+  font-family: ‘Cormorant Garamond’, serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 8px rgba(201,163,91,0.2);
 }
 
 h1 em {
-font-style: italic;
-color: var(–gold);
+  font-style: italic;
+  color: var(--gold);
+  text-shadow: 0 0 15px rgba(201,163,91,0.6);
 }
 
 .subtitle {
-font-size: 17px;
-color: var(–soft);
-font-weight: 300;
-line-height: 1.6;
+  font-size: 17px;
+  color: var(--soft);
+  font-weight: 300;
+  line-height: 1.6;
 }
 
 /* Video sections */
 .section-label {
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 2.5px;
-text-transform: uppercase;
-color: var(–gold);
-margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
 }
 
 .video-block {
-margin-bottom: 48px;
+  margin-bottom: 48px;
 }
 
 .video-title {
-font-size: 18px;
-font-weight: 600;
-color: #fff;
-margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
 }
 
 .video-desc {
-font-size: 14px;
-color: var(–muted);
-margin-bottom: 18px;
-font-weight: 300;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 18px;
+  font-weight: 300;
 }
 
 .video-outer {
-position: relative;
-border-radius: 16px;
-overflow: hidden;
-box-shadow:
-0 0 0 1px rgba(201,163,91,0.2),
-0 20px 48px rgba(0,0,0,0.6);
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 
+    0 0 0 2px var(--gold),
+    0 20px 48px rgba(0,0,0,0.7);
 }
 
 .video-outer::before {
-content: ‘’;
-position: absolute;
-inset: -1px;
-border-radius: 17px;
-background: linear-gradient(135deg, rgba(201,163,91,0.4), rgba(201,163,91,0.08), rgba(201,163,91,0.3));
-z-index: 0;
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(201,163,91,0.6), transparent, rgba(201,163,91,0.25));
+  z-index: 0;
+  opacity: 0.6;
 }
 
 .video-wrapper {
-position: relative;
-padding-bottom: 56.25%;
-height: 0;
-overflow: hidden;
-border-radius: 15px;
-background: #0a0a0a;
-z-index: 1;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #0a0a0a;
+  z-index: 1;
 }
 
 .video-wrapper iframe {
-position: absolute;
-top: 0; left: 0;
-width: 100%; height: 100%;
-border: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
 }
 
+/* Divider with gold accent */
 .divider {
-border: none;
-border-top: 1px solid var(–border);
-margin: 40px 0;
+  border: none;
+  border-top: 1px solid var(--gold);
+  opacity: 0.3;
+  margin: 40px 0;
 }
 
 /* CTA */
 .cta-label {
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 2.5px;
-text-transform: uppercase;
-color: var(–gold);
-text-align: center;
-margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 12px;
 }
 
 .cta-text {
-font-size: 16px;
-color: var(–soft);
-text-align: center;
-font-weight: 300;
-margin-bottom: 24px;
-line-height: 1.6;
+  font-size: 16px;
+  color: var(--soft);
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 24px;
+  line-height: 1.6;
 }
 
 .btn-agreement {
-display: block;
-background: var(–gold);
-color: #000;
-font-weight: 700;
-font-size: 17px;
-padding: 20px 24px;
-border-radius: 14px;
-text-decoration: none;
-text-align: center;
-transition: all 0.3s;
+  display: block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #000;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 20px 24px;
+  border-radius: 14px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s;
+  box-shadow: 0 8px 25px rgba(201,163,91,0.4);
 }
 
 .btn-agreement:hover {
-background: var(–gold-light);
-transform: translateY(-2px);
-box-shadow: 0 12px 32px rgba(201,163,91,0.3);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(201,163,91,0.5);
 }
 
 .footer-note {
-text-align: center;
-margin-top: 32px;
-font-size: 13px;
-color: var(–muted);
+  text-align: center;
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .footer-note a {
-color: var(–gold);
-text-decoration: none;
+  color: var(--gold);
+  text-decoration: none;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
@@ -214,7 +221,6 @@ text-decoration: none;
   </div>
 
   <!-- VIDEO 1 -->
-
   <div class="video-block">
     <div class="section-label">Video 1</div>
     <div class="video-title">Welcome to Hermia</div>
@@ -229,7 +235,6 @@ text-decoration: none;
   <hr class="divider">
 
   <!-- VIDEO 2 -->
-
   <div class="video-block">
     <div class="section-label">Video 2</div>
     <div class="video-title">How your CRM data is protected</div>
@@ -244,7 +249,6 @@ text-decoration: none;
   <hr class="divider">
 
   <!-- CTA -->
-
   <div class="cta-label">Ready?</div>
   <p class="cta-text">Watched both videos? Read the agreement and lock in your spot.</p>
   <a href="https://capital-dot.github.io/hermia-connect/contract.html" class="btn-agreement">
