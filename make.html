@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hermia Trust Badge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --card: #111111;
+      --gold: #C9A35B;
+      --gold-light: #e8c17a;
+      --cream: #f5f1e8;
+      --muted: #a8a39a;
+      --soft: #d4d0c7;
+    }
+
+    .hermia-trust-badge {
+      background: var(--card);
+      border: 1px solid rgba(201,163,91,0.3);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 680px;
+      margin: 60px auto;
+      box-shadow: 0 20px 60px rgba(201,163,91,0.15);
+      text-align: center;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .hermia-trust-badge__seal {
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, #C9A35B, #e8c17a);
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border: 6px solid #fff;
+      box-shadow: 0 15px 40px rgba(201,163,91,0.4);
+    }
+
+    .hermia-trust-badge__seal-logo {
+      font-size: 32px;
+      font-weight: 900;
+      color: #111;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .hermia-trust-badge__seal-text {
+      font-size: 11px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: 2px;
+      margin-top: 6px;
+    }
+
+    .hermia-trust-badge__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+
+    .hermia-trust-badge__level {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hermia-trust-badge__description {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--soft);
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+
+    .hermia-trust-badge__checks {
+      display: grid;
+      gap: 16px;
+      text-align: left;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .hermia-trust-badge__check {
+      background: rgba(201,163,91,0.08);
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      color: var(--soft);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hermia-trust-badge__check strong {
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .hermia-trust-badge__check::before {
+      content: "✓";
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body style="background:#0a0a0a; padding:40px;">
+
+  <!-- UPDATED CONTENT FOR AGENT TRUST -->
+  <div class="hermia-trust-badge">
+    <div class="hermia-trust-badge__seal">
+      <div class="hermia-trust-badge__seal-logo">MAKE</div>
+      <div class="hermia-trust-badge__seal-text">CERTIFIED</div>
+    </div>
+
+    <h2 class="hermia-trust-badge__title">Make Certified</h2>
+    <div class="hermia-trust-badge__level">Level 3 — Professional System Architect</div>
+
+    <p class="hermia-trust-badge__description">
+      Hermia’s infrastructure is built by a <strong>Make Certified Professional</strong>. 
+      Your lead data is processed through the same enterprise-grade automation engine used by 
+      <strong>Spotify, Adobe, and Cisco</strong> to ensure 100% reliability and data integrity.
+    </p>
+
+    <div class="hermia-trust-badge__checks">
+      <div class="hermia-trust-badge__check"><strong>Verified Credentials:</strong> Independently issued by Make.com</div>
+      <div class="hermia-trust-badge__check"><strong>Redundant Systems:</strong> Built with advanced error-handling logic</div>
+      <div class="hermia-trust-badge__check"><strong>Data Sovereignty:</strong> Compliant with 2026 AU/UAE Privacy Standards</div>
+      <div class="hermia-trust-badge__check"><strong>Zero-Leak Architecture:</strong> Data is processed, never stored</div>
+    </div>
+  </div>
+
+</body>
+</html>
