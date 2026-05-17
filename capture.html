@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hermia | Complete Your Enquiry</title>
+  <title>Hermia | Connect Your Gmail</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap');
 
@@ -42,113 +42,115 @@
       border-radius: 16px;
       padding: 44px 40px;
       box-shadow: 0 0 60px rgba(201, 168, 76, 0.08);
+      text-align: center;
+    }
+
+    .icon {
+      font-size: 48px;
+      margin-bottom: 20px;
     }
 
     .card h1 {
       font-family: 'Playfair Display', serif;
       font-size: 26px;
       color: #c9a84c;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
       line-height: 1.3;
     }
 
     .card p {
       font-size: 14px;
       color: #888;
-      margin-bottom: 32px;
-      line-height: 1.6;
+      margin-bottom: 16px;
+      line-height: 1.7;
     }
 
-    .enquiry-box {
+    .steps {
       background: #1a1a1a;
-      border-left: 3px solid #c9a84c;
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin-bottom: 28px;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-num {
+      background: #c9a84c;
+      color: #0a0a0a;
+      font-weight: 700;
+      font-size: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text {
       font-size: 13px;
       color: #aaa;
-      line-height: 1.6;
-      font-style: italic;
+      line-height: 1.5;
     }
 
-    label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: #c9a84c;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    input {
-      width: 100%;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      border-radius: 10px;
-      padding: 14px 16px;
-      color: #f5f5f5;
-      font-size: 15px;
-      font-family: 'Inter', sans-serif;
-      margin-bottom: 20px;
-      transition: border-color 0.2s;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: #c9a84c;
-    }
-
-    input::placeholder {
-      color: #444;
-    }
-
-    button {
+    .connect-btn {
+      display: inline-block;
       width: 100%;
       background: linear-gradient(135deg, #c9a84c, #e8c96a);
       color: #0a0a0a;
       font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 15px;
-      padding: 16px;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 18px;
       border: none;
       border-radius: 10px;
       cursor: pointer;
       letter-spacing: 0.04em;
       transition: opacity 0.2s;
-      margin-top: 8px;
+      text-decoration: none;
+      text-align: center;
     }
 
-    button:hover { opacity: 0.9; }
+    .connect-btn:hover { opacity: 0.9; }
+
+    .security-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
 
     .footer {
       text-align: center;
       margin-top: 28px;
       font-size: 12px;
-      color: #444;
+      color: #333;
     }
 
-    .success {
+    .error-state {
       display: none;
       text-align: center;
-      padding: 40px 20px;
+      padding: 20px;
     }
 
-    .success h2 {
-      font-family: 'Playfair Display', serif;
-      color: #c9a84c;
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-
-    .success p {
+    .error-state p {
       color: #888;
       font-size: 14px;
-    }
-
-    .checkmark {
-      font-size: 48px;
-      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -159,31 +161,38 @@
       <img src="https://raw.githubusercontent.com/capital-dot/hermia-connect/main/logo.png" alt="Hermia" />
     </div>
 
-    <div class="card" id="formCard">
-      <h1>Complete Your Enquiry</h1>
-      <p>We work with your agent and received your message. To connect you with the right person, please confirm your details below.</p>
+    <div class="card">
+      <div class="icon">📬</div>
+      <h1>Connect Your Gmail</h1>
+      <p>To activate Hermia for your account, connect your Gmail inbox. This allows Hermia to detect property enquiries and respond to leads instantly on your behalf.</p>
 
-      <div class="enquiry-box" id="enquiryBox">
-        Loading your enquiry...
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Click the button below and sign in with your agency Gmail account.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Click <strong style="color:#c9a84c;">Allow</strong> when prompted — this is a secure, verified connection.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">You're done! Hermia will begin monitoring your inbox for new property enquiries.</div>
+        </div>
       </div>
 
-      <div id="formFields">
-        <label>Full Name</label>
-        <input type="text" id="name" placeholder="e.g. Justin Website" />
-
-        <label>Phone Number</label>
-        <input type="tel" id="phone" placeholder="e.g. 0412 345 678" />
-
-        <label>Email Address</label>
-        <input type="email" id="email" placeholder="e.g. justin@email.com" />
-
-        <button onclick="submitForm()">Confirm My Details →</button>
+      <div id="btnWrap">
+        <a id="connectBtn" class="connect-btn" href="#">
+          Connect My Gmail →
+        </a>
       </div>
 
-      <div class="success" id="successMsg">
-        <div class="checkmark">✓</div>
-        <h2>You're all set!</h2>
-        <p>Your agent will be in touch with you shortly.</p>
+      <div class="error-state" id="errorState">
+        <p>This setup link has expired. Please contact your Hermia account manager for a new link.</p>
+      </div>
+
+      <div class="security-note">
+        🔒 Secure connection powered by Unipile. Hermia never stores your password.
       </div>
     </div>
 
@@ -194,44 +203,16 @@
   </div>
 
   <script>
-    // Pull enquiry text from URL param
     const params = new URLSearchParams(window.location.search);
-    const enquiry = params.get('enquiry');
-    const nameParam = params.get('name');
-    const webhookUrl = params.get('webhook');
+    const link = params.get('link');
 
-    if (enquiry) {
-      document.getElementById('enquiryBox').textContent = decodeURIComponent(enquiry);
+    if (link) {
+      document.getElementById('connectBtn').href = decodeURIComponent(link);
     } else {
-      document.getElementById('enquiryBox').textContent = 'Your property enquiry has been received.';
-    }
-
-    if (nameParam) {
-      document.getElementById('name').value = decodeURIComponent(nameParam);
-    }
-
-    async function submitForm() {
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-
-      if (!name || !phone || !email) {
-        alert('Please fill in all fields.');
-        return;
-      }
-
-      if (webhookUrl) {
-        await fetch(decodeURIComponent(webhookUrl), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, email })
-        });
-      }
-
-      document.getElementById('formFields').style.display = 'none';
-      document.getElementById('enquiryBox').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
+      document.getElementById('btnWrap').style.display = 'none';
+      document.getElementById('errorState').style.display = 'block';
     }
   </script>
 </body>
 </html>
+
