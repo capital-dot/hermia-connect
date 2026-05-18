@@ -4,6 +4,8 @@
     { "source": "/zoho-callback", "destination": "/zoho-callback.html" },
     { "source": "/done", "destination": "/done.html" },
     { "source": "/success", "destination": "/success.html" },
-    { "source": "/contract", "destination": "/contract.pdf" }
+    { "source": "/contract", "destination": "/contract.pdf" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" }
   ]
 }
