@@ -75,6 +75,36 @@
 
     .step-text { font-size: 13px; color: #aaa; line-height: 1.5; }
 
+    /* Video Section */
+    .video-section {
+      margin: 32px 0;
+      text-align: center;
+    }
+
+    .video-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9a84c;
+      margin-bottom: 12px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #000;
+      box-shadow: 0 10px 30px rgba(201,168,76,0.15);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
     .connect-btn {
       display: inline-block;
       width: 100%;
@@ -91,24 +121,23 @@
       transition: opacity 0.2s;
       text-decoration: none;
       text-align: center;
+      margin-top: 12px;
     }
 
     .connect-btn:hover { opacity: 0.9; }
 
     .security-note {
-      margin-top: 20px;
-      font-size: 12px;
-      color: #444;
+      margin-top: 24px;
+      font-size: 13px;
+      color: #666;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
+      font-weight: 500;
     }
 
     .footer { text-align: center; margin-top: 28px; font-size: 12px; color: #333; }
-
-    .error-state { display: none; text-align: center; padding: 20px; }
-    .error-state p { color: #888; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -138,6 +167,14 @@
         </div>
       </div>
 
+      <!-- Gmail Connection Video -->
+      <div class="video-section">
+        <h3>Watch how to connect (45 seconds)</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.loom.com/embed/4368d71073c543e5935d4d64d3bcfbc2" allowfullscreen></iframe>
+        </div>
+      </div>
+
       <div id="btnWrap">
         <a id="connectBtn" class="connect-btn" href="#">
           Connect My Gmail →
@@ -148,8 +185,10 @@
         <p>This setup link has expired. Please contact your Hermia account manager for a new link.</p>
       </div>
 
+      <!-- Updated Security Note with Unipile -->
       <div class="security-note">
-        🔒 Secure connection powered by Unipile. Hermia never stores your password.
+        🔒 Secure Gmail connection powered by <strong>Unipile</strong><br>
+        Hermia never stores your password or email content.
       </div>
     </div>
 
@@ -172,5 +211,4 @@
   </script>
 </body>
 </html>
-
 
