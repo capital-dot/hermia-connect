@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -36,8 +36,8 @@
     footer { margin-top:80px; text-align:center; font-size:13px; color:var(--muted); border-top:1px solid #222; padding-top:40px; }
     .country-picker { display:none; }
     .country-picker.visible { display:block; }
-    input[type="text"] { width:100%; padding:14px 18px; background:#1a1a1a; border:1px solid rgba(201,163,91,0.3); border-radius:10px; color:var(--cream); font-size:16px; font-family:'Inter',sans-serif; outline:none; transition:border 0.2s; }
-    input[type="text"]:focus { border-color:var(--gold); }
+    input[type="text"], input[type="email"] { width:100%; padding:14px 18px; background:#1a1a1a; border:1px solid rgba(201,163,91,0.3); border-radius:10px; color:var(--cream); font-size:16px; font-family:'Inter',sans-serif; outline:none; transition:border 0.2s; }
+    input[type="text"]:focus, input[type="email"]:focus { border-color:var(--gold); }
     .checkbox-row { display:flex; gap:12px; align-items:flex-start; cursor:pointer; }
     .checkbox-row input { margin-top:4px; accent-color:var(--gold); width:18px; height:18px; flex-shrink:0; }
   </style>
@@ -105,8 +105,8 @@
     </div>
 
     <div style="margin-bottom:24px;">
-      <label style="font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:8px;">Business / Agency Name</label>
-      <input type="text" id="clientBusiness" placeholder="Your agency or business name" />
+      <label style="font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:8px;">Email Address</label>
+      <input type="email" id="clientEmail" placeholder="Your email address" />
     </div>
 
     <label class="checkbox-row" style="margin-bottom:24px;">
@@ -160,8 +160,8 @@
     });
 
     async function handlePayment(country) {
-      const name     = document.getElementById('clientName').value.trim();
-      const business = document.getElementById('clientBusiness').value.trim();
+      const name      = document.getElementById('clientName').value.trim();
+      const email     = document.getElementById('clientEmail').value.trim();
       const stripeUrl = country === 'AU' ? STRIPE_AU : STRIPE_UAE;
       const plan      = country === 'AU' ? '$260 AUD/month' : 'AED 1,400/month';
 
@@ -169,7 +169,7 @@
 
       const payload = {
         full_name:        name,
-        agency_name:      business || 'Not provided',
+        email:            email || 'Not provided',
         country:          country,
         plan:             plan,
         signed_at:        new Date().toISOString(),
@@ -193,3 +193,4 @@
 
 </body>
 </html>
+
