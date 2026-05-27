@@ -53,8 +53,8 @@
   <h2>1. The Partnership</h2>
   <p>This Agreement is entered into between <strong>Hermia</strong> ("Provider", ABN 75 434 177 026) and the Client. By proceeding, the Client is secured as one of the <strong>First 10 Founding Partners</strong>.</p>
 
-  <h2>2. Hermia Lead Management Software</h2>
-  <p>The Provider shall provide the Client with access to the <strong>Hermia Lead Management Software</strong>. This system is a proprietary automated solution that engages with inbound enquiries via SMS and WhatsApp, qualifies leads through structured conversation logic, scores priority (Hot/Warm/Cold), and syncs directly with the Client's CRM.</p>
+  <h2>2. Hermia Lead Prioritisation Software</h2>
+  <p>The Provider delivers a proprietary automated system designed to intercept, read, and instantly respond to the Client's <strong>existing inbound enquiries</strong> via SMS and WhatsApp. The system functions explicitly as an analytics and triage tool: parsing incoming message data, validating intent, scoring priority (Hot/Warm/Cold), and identifying enquirers prepared to transact immediately so that the Client can avoid wasting resources on long-term or stagnant leads.</p>
 
   <h2>3. Founding Partner Pricing</h2>
   <div class="highlight-box">
@@ -84,8 +84,8 @@
   <h2>5. Compliance & Security</h2>
   <p>The Provider maintains all communication infrastructure to meet Australian and UAE telecommunication standards. This includes the use of dedicated mobile numbers to ensure 100% deliverability and compliance with the <em>Australian Privacy Act 1988</em> and <em>UAE Data Law No. 45/2021</em>.</p>
 
-  <h2>6. Liability Disclaimer</h2>
-  <p>The Software is a qualification tool for existing leads. The Provider does not generate new leads and is not responsible for final conversion rates or property sale outcomes. The Client is responsible for final lead follow-up.</p>
+  <h2>6. Absolute Lead Generation Disclaimer</h2>
+  <p><strong>Hermia does not generate marketing leads, run ad campaigns, or source cold business prospects.</strong> The Client is entirely responsible for driving their own volume of organic or paid property enquiries. Hermia’s sole liability is processing, parsing, and triaging the active flow of enquiries generated directly by the Client. The Provider is not responsible for baseline marketplace shifts, final agent conversion rates, or transactional outcomes.</p>
 
   <h2>7. Lead Data & Consent</h2>
   <p>The Client warrants that they have obtained all necessary consents from property enquirers before passing their contact details to Hermia for processing. The Client is solely responsible for compliance with the <em>Spam Act 2003</em> (Cth), the <em>Australian Privacy Act 1988</em>, and any applicable UAE telecommunications regulations in relation to lead consent. Hermia processes lead data solely as a service provider acting on the Client's instructions.</p>
@@ -123,14 +123,14 @@
       </button>
     </div>
 
-    <p id="nameWarning" style="color:#e07070; font-size:14px; display:none; margin-top:12px;">Please enter your full name before agreeing.</p>
+    <p id="validationWarning" style="color:#e07070; font-size:14px; display:none; margin-top:12px; text-align:center; font-weight:500;"></p>
     <p id="sendingMsg" style="color:var(--gold); font-size:14px; display:none; text-align:center; margin-top:12px;">Saving your agreement — redirecting to payment ✦</p>
   </div>
 
   <footer>
     © 2026 Hermia · ABN 75 434 177 026<br>
-    Hermia is independent software and not affiliated with HubSpot, Zoho, Airtable, Rex Software, Meta, or Stripe. All trademarks belong to their respective owners.<br><br>
-    <a href="/privacy" style="color:var(--muted);">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms" style="color:var(--muted);">Terms of Service</a>
+    Hermia is independent software and is not affiliated with your existing CRMs or external applications. All trademarks belong to their respective owners.<br><br>
+    <a href="privacy.html" style="color:var(--muted);">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html" style="color:var(--muted);">Terms of Service</a>
   </footer>
 
   <script>
@@ -143,16 +143,32 @@
 
     const checkbox = document.getElementById('agreeCheckbox');
     const picker   = document.getElementById('countryPicker');
-    const warning  = document.getElementById('nameWarning');
+    const warning  = document.getElementById('validationWarning');
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
 
     checkbox.addEventListener('change', function () {
       const name = document.getElementById('clientName').value.trim();
-      if (this.checked && name.length > 2) {
-        picker.classList.add('visible');
-        warning.style.display = 'none';
-      } else if (this.checked && name.length <= 2) {
-        this.checked = false;
-        warning.style.display = 'block';
+      const email = document.getElementById('clientEmail').value.trim();
+
+      if (this.checked) {
+        if (name.length <= 2) {
+          this.checked = false;
+          warning.textContent = "⚠️ Please enter your full name before agreeing.";
+          warning.style.display = 'block';
+          picker.classList.remove('visible');
+        } else if (!validateEmail(email)) {
+          this.checked = false;
+          warning.textContent = "⚠️ Error: Please enter a valid email address to unlock setup steps.";
+          warning.style.display = 'block';
+          picker.classList.remove('visible');
+        } else {
+          picker.classList.add('visible');
+          warning.style.display = 'none';
+        }
       } else {
         picker.classList.remove('visible');
         warning.style.display = 'none';
@@ -174,7 +190,7 @@
         plan:             plan,
         signed_at:        new Date().toISOString(),
         agreed_to_terms:  true,
-        contract_version: '1.0 — 18 May 2026'
+        contract_version: '1.2 — Explicit Disclaimers Added'
       };
 
       try {
