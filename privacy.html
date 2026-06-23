@@ -4,154 +4,511 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Hermia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #0a0a0a;
+      --black: #080808;
       --card: #111111;
+      --card2: #141414;
       --gold: #C9A35B;
       --gold-light: #e8c17a;
+      --gold-dim: rgba(201,163,91,0.07);
       --cream: #f5f1e8;
-      --muted: #a8a39a;
-      --soft: #d4d0c7;
+      --muted: #8a8580;
+      --soft: #b8b5ad;
+      --border: rgba(201,163,91,0.14);
+      --border-strong: rgba(201,163,91,0.32);
     }
+
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { 
-      font-family:'Inter',system-ui,sans-serif; 
-      background:var(--black); 
-      color:var(--cream); 
-      line-height:1.75; 
-      padding:60px 20px; 
-      max-width:780px; 
-      margin:0 auto; 
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family:'DM Sans', sans-serif;
+      background:var(--black);
+      color:var(--cream);
+      min-height:100vh;
+      overflow-x:hidden;
     }
-    .header { text-align:center; margin-bottom:60px; }
-    .logo { width:72px; height:72px; margin:0 auto 20px; display:block; filter:drop-shadow(0 4px 25px rgba(201,163,91,0.35)); }
-    h1 { 
-      font-family:'Playfair Display',serif; 
-      font-size:42px; 
-      font-weight:700; 
-      color:#fff; 
-      letter-spacing:-1px; 
-      margin-bottom:8px; 
+
+    .glow-tl {
+      position:fixed; top:-15%; left:-10%;
+      width:600px; height:600px;
+      background:radial-gradient(circle, rgba(201,163,91,0.10) 0%, transparent 70%);
+      filter:blur(90px); pointer-events:none; z-index:0;
     }
-    .meta { 
-      font-size:14px; 
-      color:var(--muted); 
-      margin-bottom:48px; 
+    .glow-br {
+      position:fixed; bottom:-15%; right:-10%;
+      width:500px; height:500px;
+      background:radial-gradient(circle, rgba(201,163,91,0.07) 0%, transparent 70%);
+      filter:blur(90px); pointer-events:none; z-index:0;
     }
-    h2 { 
-      font-size:15px; 
-      font-weight:600; 
-      letter-spacing:2.5px; 
-      text-transform:uppercase; 
-      color:var(--gold); 
-      margin:48px 0 16px; 
+
+    /* ── Top nav ── */
+    .top-nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      padding:18px 48px;
+      display:flex; align-items:center; justify-content:space-between;
+      background:rgba(8,8,8,0.92); backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--border);
     }
-    p, li { 
-      font-size:16px; 
-      color:var(--soft); 
-      margin-bottom:14px; 
+    .back-btn {
+      display:inline-flex; align-items:center; gap:9px;
+      color:var(--soft); text-decoration:none;
+      font-size:11px; font-weight:600;
+      letter-spacing:1.5px; text-transform:uppercase;
+      transition:color 0.25s;
     }
-    ul { padding-left:24px; margin-bottom:20px; }
-    li { margin-bottom:8px; }
-    strong { color:#fff; font-weight:600; }
-    .highlight { 
-      background:rgba(201,163,91,0.08); 
-      border-left:4px solid var(--gold); 
-      padding:22px 26px; 
-      border-radius:0 12px 12px 0; 
-      margin:24px 0; 
+    .back-btn:hover { color:var(--gold); }
+    .nav-logo {
+      font-family:'Cormorant Garamond', serif;
+      font-size:20px; font-weight:600; color:var(--cream);
+      letter-spacing:-0.3px; text-decoration:none;
     }
-    footer { 
-      margin-top:100px; 
-      text-align:center; 
-      font-size:13.5px; 
-      color:var(--muted); 
-      border-top:1px solid rgba(201,163,91,0.2); 
-      padding-top:32px; 
+    .nav-badge {
+      font-size:10px; font-weight:700; letter-spacing:2px;
+      text-transform:uppercase; color:var(--gold);
+      background:var(--gold-dim); border:1px solid var(--border);
+      padding:5px 12px; border-radius:20px;
     }
-    @media(max-width:600px){ body{padding:40px 20px;} }
+
+    /* ── Layout ── */
+    .layout {
+      position:relative; z-index:1;
+      display:flex; align-items:flex-start;
+      max-width:1120px; margin:0 auto;
+      padding:148px 32px 100px;
+      gap:56px;
+    }
+
+    /* ── Sticky TOC ── */
+    .toc {
+      position:sticky; top:100px;
+      width:200px; flex-shrink:0;
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .toc-label {
+      font-size:9px; font-weight:700; letter-spacing:2.5px;
+      text-transform:uppercase; color:rgba(201,163,91,0.45);
+      margin-bottom:10px;
+    }
+    .toc-link {
+      font-size:11px; font-weight:500; color:var(--muted);
+      text-decoration:none; line-height:1.4;
+      padding:5px 10px; border-radius:6px;
+      border-left:2px solid transparent;
+      transition:all 0.2s;
+    }
+    .toc-link:hover { color:var(--gold); border-left-color:var(--gold); background:var(--gold-dim); }
+    .toc-link.active { color:var(--gold); border-left-color:var(--gold); background:var(--gold-dim); }
+
+    /* ── Main content ── */
+    .page-wrap {
+      flex:1; min-width:0;
+    }
+
+    .doc-header {
+      text-align:center;
+      padding-bottom:64px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:64px;
+    }
+    .doc-eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--gold-dim); border:1px solid var(--border);
+      padding:6px 18px; border-radius:100px;
+      font-size:10px; font-weight:700; letter-spacing:3px;
+      text-transform:uppercase; color:var(--gold); margin-bottom:28px;
+    }
+    .doc-eyebrow-dot { width:5px; height:5px; background:var(--gold); border-radius:50%; opacity:0.7; }
+    .doc-header h1 {
+      font-family:'Cormorant Garamond', serif;
+      font-size:clamp(38px,6vw,62px); font-weight:700;
+      color:#fff; letter-spacing:-1.5px; line-height:1.06; margin-bottom:18px;
+      text-shadow:0 0 40px rgba(201,163,91,0.2);
+    }
+    .doc-header h1 em { font-style:italic; color:var(--gold); }
+    .doc-meta-row {
+      display:flex; align-items:center; justify-content:center;
+      gap:20px; flex-wrap:wrap; margin-top:20px;
+    }
+    .doc-meta-pill { display:flex; align-items:center; gap:7px; font-size:11px; font-weight:500; color:var(--muted); }
+    .doc-meta-pill span { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(201,163,91,0.5); }
+    .dot-sep { width:3px; height:3px; background:var(--border-strong); border-radius:50%; }
+
+    .doc-tabs {
+      display:flex; gap:4px;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:4px;
+      margin-bottom:60px; width:fit-content;
+      margin-left:auto; margin-right:auto;
+    }
+    .doc-tab {
+      padding:9px 22px; border-radius:8px;
+      font-size:11px; font-weight:700; letter-spacing:1.5px;
+      text-transform:uppercase; text-decoration:none;
+      color:var(--muted); transition:all 0.25s;
+    }
+    .doc-tab:hover { color:#fff; }
+    .doc-tab.active { background:var(--gold-dim); border:1px solid var(--border-strong); color:var(--gold); }
+
+    /* ── Sections ── */
+    .section { margin-bottom:56px; animation:fadeUp 0.5s ease both; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .section-num-row { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+    .section-num {
+      font-family:'Cormorant Garamond', serif;
+      font-size:13px; font-weight:700; color:rgba(201,163,91,0.4);
+      letter-spacing:2px; min-width:26px;
+    }
+    .section-rule { height:1px; flex:1; background:linear-gradient(90deg,var(--border-strong),transparent); }
+    .section h2 {
+      font-family:'Cormorant Garamond', serif;
+      font-size:clamp(22px,3vw,30px); font-weight:700;
+      color:#fff; line-height:1.2; letter-spacing:-0.4px; margin-bottom:20px;
+    }
+    .section h2 em { font-style:italic; color:var(--gold); }
+    .section p { font-size:14px; color:var(--soft); line-height:1.85; font-weight:300; margin-bottom:16px; }
+    .section p:last-child { margin-bottom:0; }
+    .section strong { color:#ddd; font-weight:500; }
+    .section a { color:var(--gold); text-decoration:none; transition:color 0.2s; }
+    .section a:hover { color:var(--gold-light); }
+
+    .doc-list {
+      list-style:none; padding:0;
+      display:flex; flex-direction:column; gap:12px;
+      margin-top:4px; margin-bottom:16px;
+    }
+    .doc-list li {
+      display:flex; gap:14px; align-items:flex-start;
+      font-size:14px; color:var(--soft); line-height:1.75; font-weight:300;
+    }
+    .doc-list li::before {
+      content:''; display:block; min-width:5px; height:5px;
+      background:var(--gold); border-radius:50%; margin-top:9px; opacity:0.6;
+    }
+    .doc-list li strong { color:#ddd; font-weight:500; }
+
+    .notice-box {
+      background:rgba(201,163,91,0.04);
+      border:1px solid rgba(201,163,91,0.18);
+      border-left:3px solid var(--gold);
+      border-radius:12px; padding:28px 30px; margin:28px 0;
+    }
+    .notice-label {
+      font-size:9px; font-weight:700; letter-spacing:2.5px;
+      text-transform:uppercase; color:var(--gold); margin-bottom:14px; opacity:0.85;
+    }
+    .notice-box p { font-size:13px; color:var(--soft); line-height:1.8; font-weight:300; margin-bottom:0; }
+    .notice-box p + p { margin-top:12px; }
+    .notice-box p strong { color:var(--cream); font-weight:500; }
+    .notice-box a { color:var(--gold); text-decoration:none; }
+    .notice-box a:hover { color:var(--gold-light); }
+
+    .section-divider { display:flex; align-items:center; gap:12px; margin:56px 0 0; }
+    .section-divider::before, .section-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+    .section-divider-diamond { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); opacity:0.4; }
+
+    /* ── Footer ── */
+    footer {
+      position:relative; z-index:1;
+      border-top:1px solid var(--border);
+      padding:48px 48px 40px;
+      background:rgba(0,0,0,0.25);
+    }
+    .footer-inner {
+      max-width:800px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:20px;
+    }
+    .footer-brand { font-family:'Cormorant Garamond', serif; font-size:19px; font-weight:600; color:var(--cream); }
+    .footer-brand small { display:block; font-family:'DM Sans',sans-serif; font-size:11px; font-weight:300; color:var(--muted); letter-spacing:0.3px; margin-top:3px; }
+    .footer-links { display:flex; align-items:center; gap:18px; }
+    .footer-link { font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-link:hover { color:var(--gold); }
+    .footer-bottom { max-width:800px; margin:24px auto 0; padding-top:18px; border-top:1px solid rgba(201,163,91,0.06); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+    .footer-copy { font-size:11px; color:rgba(138,133,128,0.45); font-weight:300; }
+    .footer-abn { display:inline-flex; align-items:center; gap:8px; }
+    .footer-abn-badge { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(201,163,91,0.4); background:rgba(201,163,91,0.05); border:1px solid rgba(201,163,91,0.1); border-radius:4px; padding:3px 7px; }
+    .footer-abn-num { font-size:11px; color:rgba(138,133,128,0.4); font-family:'Courier New',monospace; letter-spacing:0.5px; }
+
+    /* ── Print ── */
+    @media print {
+      .glow-tl, .glow-br, .top-nav, .toc { display:none !important; }
+      .layout { padding:40px 0; display:block; }
+      body { background:#fff; color:#000; }
+      .section h2, .doc-header h1 { color:#000; }
+      .section p, .doc-list li { color:#333; }
+      .notice-box { border:1px solid #ccc; background:#fafafa; }
+      .notice-box p, .notice-label { color:#333; }
+      footer { background:#fff; }
+      .footer-copy, .footer-abn-num { color:#888; }
+    }
+
+    /* ── Responsive ── */
+    @media(max-width:900px) {
+      .toc { display:none; }
+      .layout { padding:120px 20px 80px; display:block; }
+    }
+    @media(max-width:640px) {
+      .top-nav { padding:16px 20px; }
+      .nav-badge { display:none; }
+      footer { padding:36px 20px 28px; }
+      .footer-inner { flex-direction:column; align-items:flex-start; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <img src="https://raw.githubusercontent.com/capital-dot/hermia-connect/main/logo.png" alt="Hermia" class="logo">
-    <h1>Privacy Policy</h1>
-    <p class="meta">Effective 18 May 2026 • ABN 75 434 177 026</p>
+<div class="glow-tl"></div>
+<div class="glow-br"></div>
+
+<nav class="top-nav">
+  <a href="index.html" class="back-btn">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Back to Site
+  </a>
+  <a href="index.html" class="nav-logo">Hermia</a>
+  <span class="nav-badge">Legal &amp; Governance</span>
+</nav>
+
+<div class="layout">
+
+  <!-- Sticky TOC -->
+  <nav class="toc" id="toc">
+    <div class="toc-label">Contents</div>
+    <a class="toc-link" href="#s01">Who We Are</a>
+    <a class="toc-link" href="#s02">Information We Process</a>
+    <a class="toc-link" href="#s03">How Information Is Used</a>
+    <a class="toc-link" href="#s04">Third-Party Platforms</a>
+    <a class="toc-link" href="#s05">Client Responsibilities</a>
+    <a class="toc-link" href="#s06">Website &amp; Cookies</a>
+    <a class="toc-link" href="#s07">Security &amp; Retention</a>
+    <a class="toc-link" href="#s08">Data Breaches</a>
+    <a class="toc-link" href="#s09">Privacy Act Compliance</a>
+    <a class="toc-link" href="#s10">Your Rights</a>
+    <a class="toc-link" href="#s11">Privacy Complaints</a>
+    <a class="toc-link" href="#s12">Policy Changes</a>
+    <a class="toc-link" href="#s13">Contact</a>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="doc-header">
+      <div class="doc-eyebrow">
+        <span class="doc-eyebrow-dot"></span>
+        Legal Document
+      </div>
+      <h1>Privacy <em>Policy</em></h1>
+      <div class="doc-meta-row">
+        <div class="doc-meta-pill"><span>Effective</span> 18 May 2026</div>
+        <div class="dot-sep"></div>
+        <div class="doc-meta-pill"><span>Jurisdiction</span> Victoria, Australia</div>
+        <div class="dot-sep"></div>
+        <div class="doc-meta-pill"><span>ABN</span> 75 434 177 026</div>
+      </div>
+    </div>
+
+    <div class="doc-tabs">
+      <a href="/privacy" class="doc-tab active">Privacy Policy</a>
+      <a href="/terms" class="doc-tab">Terms of Service</a>
+    </div>
+
+    <!-- 01 -->
+    <div class="section" id="s01" style="animation-delay:0.04s">
+      <div class="section-num-row"><span class="section-num">01</span><div class="section-rule"></div></div>
+      <h2>Who <em>We Are</em></h2>
+      <p>Hermia (ABN 75 434 177 026) is an Australian business providing AI-powered intake and lead qualification software. We help businesses automatically qualify, organise, and route existing enquiries using AI. We operate under the laws of Victoria, Australia.</p>
+      <p>For any privacy-related questions, contact us at <a href="mailto:capital@hermia.au">capital@hermia.au</a>.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 02 -->
+    <div class="section" id="s02" style="animation-delay:0.07s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">02</span><div class="section-rule"></div></div>
+      <h2>Information <em>We Process</em></h2>
+      <p>Hermia processes three categories of information in the course of delivering the Service:</p>
+      <ul class="doc-list">
+        <li><strong>Client business information:</strong> Business name, contact name, email address, phone number, and billing information provided during onboarding and account management.</li>
+        <li><strong>Customer enquiry information:</strong> Name, phone number, contact details, and enquiry data belonging to the Client's customers, passed to Hermia by the Client for processing through the Service.</li>
+        <li><strong>Technical usage data:</strong> System logs, automation activity, and error reports generated in the course of operating the Service.</li>
+      </ul>
+      <div class="notice-box">
+        <div class="notice-label">⚑ Important</div>
+        <p><strong>Hermia does not source, harvest, generate, or purchase customer enquiry data.</strong> All customer information processed by Hermia is provided directly by the Client from their own existing enquiry channels. Hermia generally handles customer enquiry information on behalf of its Clients and only processes that information to provide the Service.</p>
+      </div>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 03 -->
+    <div class="section" id="s03" style="animation-delay:0.10s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">03</span><div class="section-rule"></div></div>
+      <h2>How Information <em>Is Used</em></h2>
+      <p>Information processed through the Service is used exclusively to:</p>
+      <ul class="doc-list">
+        <li>Deliver and operate the Hermia intake and qualification service for the Client.</li>
+        <li>Route structured enquiry data into the Client's connected business management, CRM, or workflow platforms.</li>
+        <li>Process subscription payments securely through our payment provider.</li>
+        <li>Communicate with Clients regarding their account, service updates, and technical matters.</li>
+        <li>Improve the reliability and performance of our automation workflows.</li>
+      </ul>
+      <p>Hermia does not sell, rent, or share personal information with third parties for marketing or advertising purposes.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 04 -->
+    <div class="section" id="s04" style="animation-delay:0.13s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">04</span><div class="section-rule"></div></div>
+      <h2>Third-Party <em>Platforms</em></h2>
+      <p>Hermia uses third-party platforms to deliver parts of the Service, including automation infrastructure, messaging delivery, payment processing, AI language processing, and CRM integrations. Each platform operates under its own privacy policy and data handling terms. The specific platforms in use may change over time as the Service evolves.</p>
+      <p>Where third-party platforms process data outside Australia — including in the United States or other jurisdictions where our service providers operate — Hermia takes reasonable steps to ensure those providers maintain appropriate data protection standards consistent with the <em>Privacy Act 1988</em> (Cth).</p>
+      <p>Hermia is independent software and is not officially affiliated with, endorsed by, or partnered with any third-party platform. All trademarks and platform names belong to their respective owners.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 05 -->
+    <div class="section" id="s05" style="animation-delay:0.16s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">05</span><div class="section-rule"></div></div>
+      <h2>Client <em>Responsibilities</em></h2>
+      <p>The Client is the primary entity responsible for the lawful collection of customer enquiry information passed to Hermia. The Client is solely responsible for:</p>
+      <ul class="doc-list">
+        <li>Ensuring all customers whose data is submitted to Hermia have provided appropriate consent in accordance with the <em>Spam Act 2003</em> (Cth) and the <em>Privacy Act 1988</em> (Cth).</li>
+        <li>Ensuring any automated messaging sent on the Client's behalf complies with applicable telecommunications and anti-spam regulations.</li>
+        <li>Maintaining accurate and current records of customer consents obtained prior to engaging the Service.</li>
+      </ul>
+      <p>Hermia processes customer data solely as a service provider acting on the Client's instructions and is not responsible for the Client's compliance with its own legal obligations.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 06 -->
+    <div class="section" id="s06" style="animation-delay:0.19s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">06</span><div class="section-rule"></div></div>
+      <h2>Website <em>&amp; Cookies</em></h2>
+      <p>The Hermia website may collect standard technical data when you visit, including IP addresses, browser type, pages visited, and session duration. This information is used solely to maintain and improve the website and is not linked to individual identities.</p>
+      <p>Our website may use cookies or similar technologies from payment and infrastructure providers, including session cookies required for secure payment processing. We do not use third-party advertising cookies or behavioural tracking technologies. You may configure your browser to refuse cookies, though some website functionality may be affected.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 07 -->
+    <div class="section" id="s07" style="animation-delay:0.22s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">07</span><div class="section-rule"></div></div>
+      <h2>Security <em>&amp; Retention</em></h2>
+      <p>Hermia uses commercially reasonable security measures to protect information processed through the Service, including encryption, access controls, and secure cloud infrastructure. Billing data is handled entirely by our payment processor and is not stored on Hermia systems.</p>
+      <p>We will take reasonable steps to delete or de-identify customer enquiry data within 30 days of a Client's subscription ending, subject to backup retention schedules, legal obligations, and technical requirements. Client business information may be retained for longer where required by law or for legitimate accounting and record-keeping purposes.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 08 -->
+    <div class="section" id="s08" style="animation-delay:0.25s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">08</span><div class="section-rule"></div></div>
+      <h2>Data <em>Breaches</em></h2>
+      <p>Where required under the Notifiable Data Breaches Scheme established under the <em>Privacy Act 1988</em> (Cth), Hermia will notify affected individuals and the Office of the Australian Information Commissioner (OAIC) of eligible data breaches as soon as practicable after becoming aware of them.</p>
+      <p>If you believe your personal information has been involved in a data breach, contact us immediately at <a href="mailto:capital@hermia.au">capital@hermia.au</a>.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 09 -->
+    <div class="section" id="s09" style="animation-delay:0.28s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">09</span><div class="section-rule"></div></div>
+      <h2>Privacy Act <em>Compliance</em></h2>
+      <p>Hermia handles personal information in accordance with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles (APPs). This includes collecting only information necessary for the Service, protecting information from misuse or unauthorised access, and not disclosing personal information to third parties except as required to deliver the Service or comply with law.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 10 -->
+    <div class="section" id="s10" style="animation-delay:0.31s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">10</span><div class="section-rule"></div></div>
+      <h2>Your <em>Rights</em></h2>
+      <p>Under the Australian Privacy Principles, you have the right to request access to personal information we hold about you, and to request correction of information that is inaccurate, out of date, or incomplete. We may decline a request where permitted by law, and if we do, we will explain why in writing.</p>
+      <p>To make an access or correction request, contact us at <a href="mailto:capital@hermia.au">capital@hermia.au</a>. We will respond within a reasonable timeframe and in accordance with our obligations under the <em>Privacy Act 1988</em> (Cth).</p>
+      <p>You may also opt out of marketing communications at any time by contacting us or using the unsubscribe mechanism in any marketing email.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 11 -->
+    <div class="section" id="s11" style="animation-delay:0.34s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">11</span><div class="section-rule"></div></div>
+      <h2>Privacy <em>Complaints</em></h2>
+      <div class="notice-box">
+        <div class="notice-label">How to raise a complaint</div>
+        <p>If you believe Hermia has breached the Australian Privacy Principles, you may submit a complaint to <a href="mailto:capital@hermia.au">capital@hermia.au</a>. Please include your name, contact details, and a description of your concern.</p>
+        <p>We will acknowledge your complaint within 5 business days and aim to provide a substantive response within 30 days. If you are not satisfied with our response, you may escalate your complaint to the <strong>Office of the Australian Information Commissioner (OAIC)</strong> at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener">oaic.gov.au</a> or by calling 1300 363 992.</p>
+      </div>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 12 -->
+    <div class="section" id="s12" style="animation-delay:0.37s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">12</span><div class="section-rule"></div></div>
+      <h2>Policy <em>Changes</em></h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in the Service or applicable law. Changes will be posted on this page with an updated effective date and become effective when published unless otherwise stated. We encourage you to review this page periodically.</p>
+    </div>
+
+    <div class="section-divider"><div class="section-divider-diamond"></div></div>
+
+    <!-- 13 -->
+    <div class="section" id="s13" style="animation-delay:0.40s; margin-top:56px;">
+      <div class="section-num-row"><span class="section-num">13</span><div class="section-rule"></div></div>
+      <h2>Governance <em>Contact</em></h2>
+      <p>For all privacy-related enquiries or legal correspondence, contact us at <a href="mailto:capital@hermia.au">capital@hermia.au</a>.</p>
+    </div>
+
+  </div><!-- end .page-wrap -->
+</div><!-- end .layout -->
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Hermia
+      <small>AI Intake Automation for Business Enquiries</small>
+    </div>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="/terms" class="footer-link">Terms</a>
+      <a href="mailto:capital@hermia.au" class="footer-link">Contact</a>
+    </div>
   </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Hermia. All rights reserved. Victoria, Australia.</span>
+    <div class="footer-abn">
+      <span class="footer-abn-badge">ABN</span>
+      <span class="footer-abn-num">75 434 177 026</span>
+    </div>
+  </div>
+</footer>
 
-  <h2>1. Who We Are</h2>
-  <p>Hermia ("we", "us", "our") is an Australian sole trader (ABN 75 434 177 026) providing SMS and WhatsApp lead qualification software for real estate agents. Our website is <a href="https://hermia.au">hermia.au</a>. Contact: <a href="mailto:capital@hermia.au">capital@hermia.au</a></p>
+<script>
+  // TOC active state on scroll
+  const sections = document.querySelectorAll('.section[id]');
+  const tocLinks = document.querySelectorAll('.toc-link');
 
-  <h2>2. What Information We Collect</h2>
-  <p>We collect information in the following ways:</p>
-  <ul>
-    <li><strong>Agent clients:</strong> Business name, contact name, email address, phone number, CRM details, and billing information provided during onboarding.</li>
-    <li><strong>End leads (property enquirers):</strong> Name, phone number, and enquiry data passed to Hermia by the agent via their CRM or listing platform.</li>
-    <li><strong>Automated interactions:</strong> SMS and WhatsApp message content generated through our qualification flows.</li>
-    <li><strong>Usage data:</strong> System logs, scenario activity, and error reports from our Make.com automation platform.</li>
-  </ul>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
 
-  <h2>3. How We Use Your Information</h2>
-  <ul>
-    <li>To deliver and operate the Hermia lead qualification service.</li>
-    <li>To route qualified leads back to agents via their nominated CRM.</li>
-    <li>To process payments via Stripe.</li>
-    <li>To communicate with agents regarding their account and service updates.</li>
-    <li>To improve our automation flows and product reliability.</li>
-  </ul>
-
-  <h2>4. Third-Party Services</h2>
-  <p>Hermia integrates with the following third-party platforms to deliver its service. Each platform operates under its own privacy policy:</p>
-  <ul>
-    <li><strong>Make.com</strong> — automation infrastructure</li>
-    <li><strong>ClickSend</strong> — SMS delivery</li>
-    <li><strong>Unipile</strong> — WhatsApp and messaging integration</li>
-    <li><strong>Stripe</strong> — payment processing</li>
-    <li><strong>HubSpot, Zoho, Airtable, Rex Software</strong> — CRM integrations (where enabled by agent)</li>
-    <li><strong>Groq</strong> — AI language processing for conversation flows</li>
-  </ul>
-  <p>Hermia is independent software and is not affiliated with, endorsed by, or officially partnered with any of the above platforms. All trademarks belong to their respective owners.</p>
-
-  <h2>5. Australian Privacy Act Compliance</h2>
-  <p>We handle personal information in accordance with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles (APPs). This includes:</p>
-  <ul>
-    <li>Only collecting information that is necessary for our service.</li>
-    <li>Not disclosing personal information to third parties except as required to deliver the service or comply with law.</li>
-    <li>Taking reasonable steps to protect personal information from misuse, loss, or unauthorised access.</li>
-    <li>Allowing individuals to access and correct their personal information upon request.</li>
-  </ul>
-
-  <h2>6. Data Storage and Security</h2>
-  <p>Lead data is stored in secure cloud-based data stores (Make.com Data Store). Billing data is handled entirely by Stripe and is not stored on Hermia systems. We retain lead interaction data only as long as necessary to deliver the service to the agent.</p>
-
-  <h2>7. SMS and WhatsApp Consent</h2>
-  <p>Hermia sends automated SMS and WhatsApp messages to property enquirers on behalf of real estate agents. Agents are responsible for ensuring they have obtained appropriate consent from leads in accordance with the <em>Spam Act 2003</em> (Cth) and applicable telecommunications regulations. Hermia processes these messages as a service provider acting on the agent's instructions.</p>
-
-  <h2>8. International Transfers</h2>
-  <p>Some third-party services we use may process data outside Australia, including in the United States and UAE. We take reasonable steps to ensure these providers maintain appropriate data protection standards.</p>
-
-  <h2>9. Your Rights</h2>
-  <p>You may contact us at <a href="mailto:capital@hermia.au">capital@hermia.au</a> to:</p>
-  <ul>
-    <li>Request access to personal information we hold about you.</li>
-    <li>Request correction of inaccurate information.</li>
-    <li>Request deletion of your data (subject to legal retention obligations).</li>
-    <li>Opt out of marketing communications.</li>
-  </ul>
-
-  <h2>10. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. Continued use of the service after changes constitutes acceptance.</p>
-
-  <h2>11. Contact</h2>
-  <p>For any privacy-related enquiries: <a href="mailto:capital@hermia.au">capital@hermia.au</a></p>
-
-  <footer>
-    © 2026 Hermia • ABN 75 434 177 026<br>
-    <a href="/" style="color:#C9A35B;">Back to Hermia</a>
-  </footer>
+  sections.forEach(s => observer.observe(s));
+</script>
 
 </body>
 </html>
